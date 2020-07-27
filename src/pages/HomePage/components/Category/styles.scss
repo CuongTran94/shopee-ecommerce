@@ -1,0 +1,38 @@
+.home {
+    &-category {
+        &-list {
+            margin-top: 20px;
+
+            .ant-card-grid {
+                padding: 0;
+
+                a {
+                    display: block;
+                    overflow: hidden;
+                }
+            }
+        }
+
+        &-img {
+            padding: 14px 24px 14px;
+        }
+
+        &-title {
+            height: 40px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 10px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+
+            h4.ant-typography {
+                font-size: 14px;
+                font-weight: 400;
+                text-transform: capitalize;
+                color: #333;
+                margin: 0;
+            }
+        }
+    }
+}

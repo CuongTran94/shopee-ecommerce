@@ -1,0 +1,39 @@
+.shopee {
+    &-hotdeal {
+        margin-top: 20px;
+
+        .hotdeal {
+            a {
+                display: block;
+            }
+
+            .ant-col {
+                cursor: pointer;
+
+                &:hover {
+                    margin-top: -2px;
+                }
+            }
+    
+            &-img {
+                width: 45px;
+                margin: 8px auto;
+            }
+
+            &-text {
+                text-align: center;
+                color: #333;
+                font-size: 13px;
+                font-family: sans-serif;
+                text-transform: capitalize;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                display: -webkit-box;
+                line-height: 1.2;
+                margin-bottom: 8px;
+            }
+        }
+    }
+}

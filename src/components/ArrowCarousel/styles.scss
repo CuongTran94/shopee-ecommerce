@@ -1,0 +1,41 @@
+.ant {
+    &-carousel {
+        .slick {
+            &-prev {
+                font-size: 11px !important;
+                color: #333 !important;
+                width: 25px !important;
+                height: 25px !important;
+                display: flex !important;
+                justify-content: center;
+                align-items: center;
+                background: #fff !important;
+                border-radius: 50%;
+                box-shadow: 0 1px 12px 0 rgba(0,0,0,.12);
+                transform: translateX(calc(50%));
+                z-index: 7;
+                &:before {
+                    content: "" !important;
+                }
+            }
+
+            &-next {
+                font-size: 11px !important;
+                color: #333 !important;
+                width: 25px !important;
+                height: 25px !important;
+                display: flex !important;
+                justify-content: center;
+                align-items: center;
+                background: #fff !important;
+                border-radius: 50%;
+                box-shadow: 0 1px 12px 0 rgba(0,0,0,.12);
+                transform: translateX(calc(-50%));
+                z-index: 7;
+                &:before {
+                    content: "" !important;
+                }
+            }
+        }
+    }
+}

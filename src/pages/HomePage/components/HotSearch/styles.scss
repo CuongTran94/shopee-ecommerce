@@ -1,0 +1,42 @@
+.hot {
+    &-search {
+        margin-top: 20px;
+
+        .more {
+            text-transform: capitalize;
+            font-size: 15px;
+            color: #EE4D2D;
+        }
+
+        &-content {
+            flex: 1;
+            padding: 8px 20px;
+            color: #333;
+            font-family: sans-serif;    
+        }
+
+        &-desc {
+            font-size: 13px;
+            color: #777;
+        }
+
+        &-img {
+            flex: 0 0 100px;
+            height: 100px;
+            padding: 8px 8px;
+        }
+
+        &-item {
+            display: flex;
+            display: -webkit-flex;
+        }
+
+        .ant-card-grid {
+            padding: 0;
+        }
+
+        .ant-card-head-title {
+            text-transform: uppercase;
+        }
+    }
+}

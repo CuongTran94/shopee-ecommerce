@@ -1,0 +1,73 @@
+.flash {
+    &-sale {
+        margin-top: 20px;
+
+        &-wrap {
+            flex: 1;            
+        }
+
+        &-link {
+            text-transform: capitalize;
+            font-size: 15px;
+            color: #EE4D2D;
+
+            &:hover {
+                color: #EE4D2D;
+            }
+        }
+
+        &-img {
+            background-image: url('../../../../assets/images/flashsale.png');            
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: 50%;
+            width: 114px;            
+            height: 30px;
+            line-height: 30px;
+            display: inline-block;            
+        }
+
+        &-header {
+            display: flex;
+            display: -webkit-flex;
+            align-items: center;
+            background: #fff;
+            height: 60px;
+            padding: 0 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        &-content {
+            background: #fff;
+        }
+
+        .ant {
+            &-card {
+                &-body {
+                    padding: 5px 20px 15px;
+                    text-align: center;
+                }
+
+                &-cover {
+                    width: 173px;
+                    height: 173px;
+                    margin: 5px auto;
+                    display: flex;
+                    flex: 1;
+
+                    img {
+                        width: 173px;
+                        height: 173px;
+                        object-fit: contain;
+                    }
+                }
+
+                &-meta-title {
+                    color: #EE4D2D;
+                    font-size: 20px;
+                    font-family: sans-serif;
+                }
+            }
+        }
+    }
+}
