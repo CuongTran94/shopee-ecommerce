@@ -1,0 +1,26 @@
+.daily {
+    margin-top: 118px;
+    overflow: hidden;
+    margin-bottom: 60px;
+
+    &-product {
+        padding-bottom: 40px;
+    }
+
+    &-title {
+        margin: 40px 0 !important;
+
+        &::before, &::after {
+            border-top: 1px dotted rgba(0,0,0,.7) !important;
+        }
+
+        .ant-divider-inner-text {
+            padding: 8px 20px;
+            background: #EE4D2D;
+            color: #fff;
+            border-radius: 10px;
+            text-transform: capitalize;
+            font-size: 21px;
+        }
+    }
+}

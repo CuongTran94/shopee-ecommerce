@@ -1,0 +1,67 @@
+.form {
+    &-wrap {
+        background: rgb(238, 77, 45);
+        overflow: hidden;
+        min-height: 600px;
+        display: flex;
+    }
+
+    &-desc {
+        text-align: center;
+
+        a {
+            margin-left: 8px;
+            color: #ee4d2d;
+        }
+    }
+
+    &-btn {
+        margin-bottom: 10px !important;
+    }
+
+    &-note {
+        display: flex;
+        justify-content: space-between;
+        font-size: 15px;
+    }
+
+    &-box {
+        width: 500px;
+        background: #fff;
+        margin: 0 auto;
+        padding: 30px;
+        border-radius: 5px;
+
+        .ant {
+            &-input {
+                padding: 10px 12px;
+            }
+
+            &-btn {
+                width: 100%;
+                padding: 8px 15px;
+                border: none;
+                height: 40px;
+                background: #ee4d2d;
+                color: #fff;
+                text-transform: uppercase;
+            }
+
+            &-form-item {
+                margin-bottom: 30px;
+            }
+
+            &-divider-inner-text {
+                text-transform: uppercase;
+                color: #ccc;
+            }
+        }
+    }
+
+    &-title {
+        .ant-typography {
+            margin-bottom: 28px;
+        }
+    }
+
+}

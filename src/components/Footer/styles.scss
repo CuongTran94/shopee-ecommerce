@@ -1,0 +1,60 @@
+.footer {
+    border-top: 4px solid #EE4D2D;
+
+    &-icon {
+        font-size: 16px;
+        margin-right: 10px;
+        color: #555;
+    }
+
+    &-img {
+        background-repeat: no-repeat;
+        background-size: contain;
+        max-width: 100%;
+        margin-bottom: 24px;
+
+        &.payment {
+            background-image: url('../../assets/images/footer1_1.png');
+            height: 100px;
+        }
+
+        &.transport {
+            background-image: url('../../assets/images/footer_2.png');
+            height: 100px;
+        }
+
+        &.app-store {
+            background-image: url('../../assets/images/footer_3.png');
+            height: 95px;
+        }
+    }
+
+    .policy {
+        background: #FBFBFB;
+        color: #757575;
+        padding: 40px 0;
+
+        h4 {
+            &.ant-typography {
+                font-size: 12px;
+                font-weight: 500;
+                text-transform: uppercase;
+                color: #757575;
+                margin-bottom: 18px;
+            }
+        }
+
+        .ant-list {
+            &-item {
+                border-bottom: none;
+                padding: 0 0 12px 0;
+                font-size: 12px;
+                font-family: sans-serif;
+
+                a {
+                    color: #757575;
+                }
+            }
+        }
+    }
+}

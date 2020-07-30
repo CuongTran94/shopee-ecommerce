@@ -52,7 +52,7 @@ const Category = () => {
                             <img src={cate2} alt="" />
                         </div>
                         <div className="home-category-title">
-                            <Title level={4}>Thoi trang nu</Title>
+                            <Title level={4}>Điện Thoại & Phụ Kiện</Title>
                         </div>
                     </Link>
                 </Card.Grid>
@@ -62,7 +62,7 @@ const Category = () => {
                             <img src={cate3} alt="" />
                         </div>
                         <div className="home-category-title">
-                            <Title level={4}>Thoi trang nu</Title>
+                            <Title level={4}>Thiết Bị Điện Tử</Title>
                         </div>
                     </Link>
                 </Card.Grid>
@@ -72,7 +72,7 @@ const Category = () => {
                             <img src={cate4} alt="" />
                         </div>
                         <div className="home-category-title">
-                            <Title level={4}>Thoi trang nu</Title>
+                            <Title level={4}>Máy tính & Laptop</Title>
                         </div>
                     </Link>
                 </Card.Grid>
@@ -82,7 +82,7 @@ const Category = () => {
                             <img src={cate5} alt="" />
                         </div>
                         <div className="home-category-title">
-                            <Title level={4}>Thoi trang nu</Title>
+                            <Title level={4}>Máy ảnh - Máy quay phim</Title>
                         </div>
                     </Link>
                 </Card.Grid>
@@ -92,7 +92,7 @@ const Category = () => {
                             <img src={cate6} alt="" />
                         </div>
                         <div className="home-category-title">
-                            <Title level={4}>Thoi trang nu</Title>
+                            <Title level={4}>Đồng Hồ</Title>
                         </div>
                     </Link>
                 </Card.Grid>
@@ -102,7 +102,7 @@ const Category = () => {
                             <img src={cate7} alt="" />
                         </div>
                         <div className="home-category-title">
-                            <Title level={4}>Thoi trang nu</Title>
+                            <Title level={4}>Giày Dép Nam</Title>
                         </div>
                     </Link>
                 </Card.Grid>
@@ -112,7 +112,7 @@ const Category = () => {
                             <img src={cate8} alt="" />
                         </div>
                         <div className="home-category-title">
-                            <Title level={4}>Thoi trang nu</Title>
+                            <Title level={4}>Thiết Bị Điện Gia Dụng</Title>
                         </div>
                     </Link>
                 </Card.Grid>
@@ -122,7 +122,7 @@ const Category = () => {
                             <img src={cate9} alt="" />
                         </div>
                         <div className="home-category-title">
-                            <Title level={4}>Thoi trang nu</Title>
+                            <Title level={4}>Thể Thao & Du Lịch</Title>
                         </div>
                     </Link>
                 </Card.Grid>
@@ -132,7 +132,7 @@ const Category = () => {
                             <img src={cate10} alt="" />
                         </div>
                         <div className="home-category-title">
-                            <Title level={4}>Thoi trang nu</Title>
+                            <Title level={4}>Ô tô - xe máy - xe đạp</Title>
                         </div>
                     </Link>
                 </Card.Grid>
@@ -142,7 +142,7 @@ const Category = () => {
                             <img src={cate11} alt="" />
                         </div>
                         <div className="home-category-title">
-                            <Title level={4}>Thoi trang nu</Title>
+                            <Title level={4}>Thời Trang Nữ</Title>
                         </div>
                     </Link>
                 </Card.Grid>
@@ -152,7 +152,7 @@ const Category = () => {
                             <img src={cate12} alt="" />
                         </div>
                         <div className="home-category-title">
-                            <Title level={4}>Thoi trang nu</Title>
+                            <Title level={4}>Mẹ & Bé</Title>
                         </div>
                     </Link>
                 </Card.Grid>
@@ -162,7 +162,7 @@ const Category = () => {
                             <img src={cate13} alt="" />
                         </div>
                         <div className="home-category-title">
-                            <Title level={4}>Thoi trang nu</Title>
+                            <Title level={4}>Nhà Cửa & Đời Sống</Title>
                         </div>
                     </Link>
                 </Card.Grid>
@@ -172,7 +172,7 @@ const Category = () => {
                             <img src={cate14} alt="" />
                         </div>
                         <div className="home-category-title">
-                            <Title level={4}>Thoi trang nu</Title>
+                            <Title level={4}>Sức Khỏe & Sắc Đẹp</Title>
                         </div>
                     </Link>
                 </Card.Grid>
@@ -182,7 +182,7 @@ const Category = () => {
                             <img src={cate15} alt="" />
                         </div>
                         <div className="home-category-title">
-                            <Title level={4}>Thoi trang nu</Title>
+                            <Title level={4}>Giày Dép Nữ</Title>
                         </div>
                     </Link>
                 </Card.Grid>
@@ -192,7 +192,7 @@ const Category = () => {
                             <img src={cate16} alt="" />
                         </div>
                         <div className="home-category-title">
-                            <Title level={4}>Thoi trang nu</Title>
+                            <Title level={4}>Túi Ví</Title>
                         </div>
                     </Link>
                 </Card.Grid>
@@ -202,7 +202,7 @@ const Category = () => {
                             <img src={cate17} alt="" />
                         </div>
                         <div className="home-category-title">
-                            <Title level={4}>Thoi trang nu</Title>
+                            <Title level={4}>Phụ Kiện Thời Trang</Title>
                         </div>
                     </Link>
                 </Card.Grid>
@@ -212,7 +212,7 @@ const Category = () => {
                             <img src={cate18} alt="" />
                         </div>
                         <div className="home-category-title">
-                            <Title level={4}>Thoi trang nu</Title>
+                            <Title level={4}>Bách Hoá Online</Title>
                         </div>
                     </Link>
                 </Card.Grid>
@@ -222,7 +222,7 @@ const Category = () => {
                             <img src={cate19} alt="" />
                         </div>
                         <div className="home-category-title">
-                            <Title level={4}>Thoi trang nu</Title>
+                            <Title level={4}>Voucher & Dịch vụ</Title>
                         </div>
                     </Link>
                 </Card.Grid>
@@ -232,7 +232,7 @@ const Category = () => {
                             <img src={cate20} alt="" />
                         </div>
                         <div className="home-category-title">
-                            <Title level={4}>Thoi trang nu</Title>
+                            <Title level={4}>Nhà Sách Online</Title>
                         </div>
                     </Link></Card.Grid>                
             </Card>

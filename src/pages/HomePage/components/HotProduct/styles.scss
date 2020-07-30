@@ -1,0 +1,64 @@
+.hot {
+    &-product {
+        margin-top: 30px;
+
+        &-tab {
+            .ant-tabs {
+                &-nav {
+                    background: #fff;
+                    height: 60px;
+                    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05);
+                }
+
+                &-tab {
+                    padding: 12px 46px;
+                    margin: 0;
+
+                    &:nth-child(2) {
+                        .ant-tabs-tab-btn {
+                            background-image: url('../../../../assets/images/super_sale.png');
+                            background-repeat: no-repeat;
+                            background-size: contain;
+                            width: 160px;
+                            height: 20px;
+                        }
+                    }
+
+                    &-btn {
+                        text-transform: uppercase;
+                        font-size: 16px;
+                        color: #EE4D2D !important;                        
+                        font-weight: 500;
+                    }
+                }
+
+                &-ink-bar {
+                    height: 4px !important;
+                    background: #EE4D2D !important;
+                }
+                
+            }
+        }        
+    }
+}
+
+.load-more {
+    text-align: center;
+    margin-top: 18px;
+
+    a {
+        display: inline-block;
+    }
+
+    .ant-btn {
+        min-width: 390px;
+        min-height: 40px;
+        text-transform: capitalize;
+        font-size: 15px;
+        color: #555;
+        display: inline-flex;
+        align-items: center;
+        margin: auto;
+        justify-content: center;
+    }
+}

@@ -8,7 +8,8 @@ import './styles.scss';
 
 const { Search } = Input;
 
-const Header = () => {
+const Header = (props) => {
+    console.log(props.url);
     return (
         <div className="shopee-top shop">
             <div className="container">
@@ -39,10 +40,10 @@ const Header = () => {
                                 <Link to="/#">trợ giúp</Link>
                             </Menu.Item>
                             <Menu.Item key="signup">
-                                <Link to="/#">đăng ký</Link>
+                                <Link to="/signup">đăng ký</Link>
                             </Menu.Item>
                             <Menu.Item key="signin">
-                                <Link to="/#">đăng nhập</Link>
+                                <Link to="/login">đăng nhập</Link>
                             </Menu.Item>
                         </Menu>
                     </Col>

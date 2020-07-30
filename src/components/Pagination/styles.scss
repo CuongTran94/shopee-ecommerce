@@ -1,0 +1,51 @@
+.paginate {
+    text-align: center;
+
+    .ant-pagination {
+        font-size: 20px;
+
+        &-options {
+            display: none;
+        }
+
+        &-item {
+            border: none;
+            background: transparent;
+            min-width: 40px;
+            height: 30px;
+            margin: 0 15px;
+
+            a {
+                color: #999999;
+                
+                &:hover, &:focus {
+                    color: rgba(0, 0, 0, 0.65);
+                }
+            }
+
+            &-active {
+                a {
+                    color: #fff;
+                    background: #EE4D2D;
+                    border-radius: 3px;
+                    
+                    &:hover {
+                        color: #fff;
+                        background: #f05d40;
+                    }                    
+                }
+
+                &:focus a {
+                    color: #fff;
+                }
+            }
+        }
+
+        &-item-link {
+            border: none !important;
+            background-color: transparent !important;
+            font-size: 18px !important;
+            cursor: pointer !important;
+        }
+    }
+}

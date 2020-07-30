@@ -4,12 +4,14 @@ import HotDeal from './components/HotDeal';
 import Banner from '../../components/Banner';
 import Category from './components/Category';
 import HotSearch from './components/HotSearch';
+import HotProduct from './components/HotProduct';
 import { Row } from 'antd';
 import FlashSale from './components/FlashSale';
 
+
 const HomePageContainer = () => {
     return (
-        <div>
+        <div className="homepage" style={{marginBottom: 70}}>
             <div 
                 className="home-box-slider" 
                 style={{background: '#fff', boxShadow: '0 1px 1px 0 rgba(0,0,0,.04)'}}
@@ -39,6 +41,9 @@ const HomePageContainer = () => {
             </div>
             <div className="home-hot-search">
                 <HotSearch />
+            </div>
+            <div className="home-list-product">
+                <HotProduct />
             </div>            
         </div>
     );
