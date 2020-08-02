@@ -1,15 +1,38 @@
 import React from 'react';
-import { Row, Col, Menu, Input } from 'antd';
+import { Row, Col, Menu, Input, Tooltip } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import logo from '../../assets/images/shopee-logo.png';
 import cart from '../../assets/images/cart.png';
 import { Link } from 'react-router-dom';
 import './styles.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import { logoutUser } from '../../redux/User/user.actions';
 
 const { Search } = Input;
 
-const Header = (props) => {
-    console.log(props.url);
+const Header = () => {
+    const currentUser = useSelector(state => state.user.currentUser);
+    const dispatch = useDispatch();
+    
+    const handleLogout = () => {
+        dispatch(logoutUser());
+    }
+
+    const renderTooltip = () => {
+        return (
+            <div className="ant-tooltip-wrap">
+                <Link to="/" className="ant-tooltip-item">Tài khoản của tôi</Link>
+                <Link to="/" className="ant-tooltip-item">Đơn mua</Link>
+                <div 
+                    className="ant-tooltip-item"
+                    onClick={() => handleLogout()}
+                >
+                    Đăng xuất
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className="shopee-top shop">
             <div className="container">
@@ -39,12 +62,26 @@ const Header = (props) => {
                                 <QuestionCircleOutlined className="topbar-ic-que" />
                                 <Link to="/#">trợ giúp</Link>
                             </Menu.Item>
-                            <Menu.Item key="signup">
-                                <Link to="/signup">đăng ký</Link>
-                            </Menu.Item>
-                            <Menu.Item key="signin">
-                                <Link to="/login">đăng nhập</Link>
-                            </Menu.Item>
+                            {!currentUser ? (
+                                [
+                                    <Menu.Item key="signup">
+                                        <Link to="/signup">đăng ký</Link>
+                                    </Menu.Item>,
+                                    <Menu.Item key="signin">
+                                        <Link to="/login">đăng nhập</Link>
+                                    </Menu.Item>
+                                ]
+                            ) : (
+                                <Menu.Item>
+                                    <Tooltip 
+                                    placement="bottom" 
+                                    title={renderTooltip}
+                                    color="white"
+                                    >
+                                        <Link to="/account">Cuong Tran</Link>
+                                    </Tooltip>                                    
+                                </Menu.Item>
+                            )}
                         </Menu>
                     </Col>
                 </Row>

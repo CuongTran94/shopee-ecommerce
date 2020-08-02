@@ -6,14 +6,18 @@ import { Link } from 'react-router-dom';
 
 const { Title } = Typography;
 
-const NavBar = () => {
+const NavBar = (props) => {
+    const { isLogin } = props;
+
     return (
         <div className="navbar-wrap">
             <div className="container navbar">
                 <div className="navbar-brand">
                     <Link to="/">
                         <img src={brand} alt="logo" />
-                        <Title level={3}>Đăng nhập</Title>
+                        {isLogin ? (<Title level={3}>Đăng nhập</Title>) : (
+                            <Title level={3}>Đăng ký</Title>
+                        )}
                     </Link>                    
                 </div>
                 <div className="navbar-help">

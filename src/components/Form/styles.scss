@@ -35,6 +35,11 @@
         .ant {
             &-input {
                 padding: 10px 12px;
+                color: #333;
+            }
+
+            &-alert {
+                margin-bottom: 24px;
             }
 
             &-btn {

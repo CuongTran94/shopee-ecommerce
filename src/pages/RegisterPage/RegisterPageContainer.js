@@ -2,21 +2,16 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import NavBar from '../../components/Navbar';
 import FormCommon from '../../components/Form';
-import { auth } from '../../constants/config';
+import { signUpUser, setLoading, setAuthError } from '../../redux/User/user.actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginUser, setLoading, setAuthError } from '../../redux/User/user.actions';
 
-const LoginPageContainer = () => {
+const RegisterPageContainer = () => {
     const checkLog = useSelector(state => state.user.authErr);
     const isLoading = useSelector(state => state.user.isLoading);
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(setAuthError());
-    }, []);
-
-    const handleSignin = (user) => {
-        const action = loginUser(user);
+    const handleSignup = (user) => {
+        const action = signUpUser(user);
         dispatch(action);
     };
 
@@ -25,22 +20,28 @@ const LoginPageContainer = () => {
         dispatch(action);
     };
 
+    useEffect(() => {
+        dispatch(setAuthError());
+    }, []);
+
     return (
-        <div className="shopee-login">
-            <NavBar isLogin={true} />
-            <FormCommon 
-                isLogin={true}                 
+        <div className="shopee-register">
+            <NavBar 
+                isLogin={false}                 
+            />
+            <FormCommon
+                isLogin={false} 
                 isError={checkLog}
                 isLoading={isLoading}
-                onAction={handleSignin}
-                onSetLoading={handleChangeLoading}
+                onSetLoading={handleChangeLoading} 
+                onAction={handleSignup} 
             />
         </div>
     );
 };
 
-LoginPageContainer.propTypes = {
+RegisterPageContainer.propTypes = {
     
 };
 
-export default LoginPageContainer;
+export default RegisterPageContainer;
