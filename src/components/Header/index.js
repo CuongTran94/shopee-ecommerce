@@ -78,7 +78,7 @@ const Header = () => {
                                     title={renderTooltip}
                                     color="white"
                                     >
-                                        <Link to="/account">Cuong Tran</Link>
+                                        <Link to="/account">{currentUser.username}</Link>
                                     </Tooltip>                                    
                                 </Menu.Item>
                             )}

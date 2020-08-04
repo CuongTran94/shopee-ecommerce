@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from './components/Slider';
 import HotDeal from './components/HotDeal';
 import Banner from '../../components/Banner';
@@ -7,9 +7,19 @@ import HotSearch from './components/HotSearch';
 import HotProduct from './components/HotProduct';
 import { Row } from 'antd';
 import FlashSale from './components/FlashSale';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchProducts } from '../../redux/Products/products.actions';
 
 
 const HomePageContainer = () => {
+    const products = useSelector(state => state.product.listProducts);
+    const loading = useSelector(state => state.product.isLoading);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchProducts());
+    }, []);
+
     return (
         <div className="homepage" style={{marginBottom: 70}}>
             <div 
@@ -43,7 +53,7 @@ const HomePageContainer = () => {
                 <HotSearch />
             </div>
             <div className="home-list-product">
-                <HotProduct />
+                <HotProduct listProduct={products} isLoading={loading} />
             </div>            
         </div>
     );

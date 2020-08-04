@@ -4,7 +4,8 @@ import './styles.scss';
 import ListProduct from '../../../../components/ListProduct';
 import Paginate from '../../../../components/Pagination';
 
-const DailyProduct = () => {
+const DailyProduct = (props) => {    
+    const { listProduct, isLoading } = props;
     return (
         <div className="daily">
             <div className="container">
@@ -12,9 +13,11 @@ const DailyProduct = () => {
                     Tất cả
                 </Divider>
                 <div className="daily-product">
-                    <ListProduct />
+                    <ListProduct listProduct={listProduct} isLoading={isLoading} />
                 </div>
-                <Paginate />
+                <Paginate                     
+                    {...props} 
+                />
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.scss';
-import { List, Card } from 'antd';
+import { List, Card, Space, Spin } from 'antd';
 import { Link } from 'react-router-dom';
 import product1 from '../../assets/images/product_1.jpg';
 import product2 from '../../assets/images/product_2.jpg';
@@ -109,14 +109,22 @@ const data = [
     },
 ];
 
-const ListProduct = () => {
-
-    const renderDescription = () => {
+const ListProduct = (props) => {
+    const { listProduct, isLoading } = props;
+    
+    const products = listProduct.map(doc => {
+        return {
+            id: doc.id,
+            ...doc.data()
+        }
+    });
+    
+    const renderDescription = (price) => {
         return (
             <React.Fragment>
                 <div className="desc-right">
                     <span className="text">đ</span>
-                    <span className="price">10.000</span>
+                    <span className="price">{price}</span>
                 </div>
                 <div className="sale">
                     Đã bán 84,1k
@@ -125,25 +133,38 @@ const ListProduct = () => {
         );
     };
 
+    const renderLoading = () => {
+        return (
+            <div className="list-product-loading">
+                <Space size="middle">
+                    <Spin size="large" />
+                </Space>
+            </div>
+        );
+    }
+
     return (
-        <List
-            className="list-product" 
-            grid={{column: 6}}
-            dataSource={data}
-            renderItem={item => (
-                <List.Item>
-                    <Link to="/">
-                        <Card 
-                            cover={<img alt="" src={item.img} />}
-                            bordered={false}
-                            className="list-product-card"
-                        >
-                            <Meta title={item.title} description={renderDescription()} />
-                        </Card>
-                    </Link>
-                </List.Item>
-            )}
-        />
+        <React.Fragment>
+            {isLoading ? renderLoading() : <List
+                className="list-product" 
+                grid={{column: 6}}
+                dataSource={products}
+                locale={{emptyText: " "}}
+                renderItem={item => (
+                    <List.Item>
+                        <Link to="/">
+                            <Card 
+                                cover={<img alt="" src={item.pro_avatar} />}
+                                bordered={false}
+                                className="list-product-card"
+                            >
+                                <Meta title={item.pro_name} description={renderDescription(item.pro_price)} />
+                            </Card>
+                        </Link>
+                    </List.Item>
+                )}
+            />}
+        </React.Fragment>
     );
 };
 

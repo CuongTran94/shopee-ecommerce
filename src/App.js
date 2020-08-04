@@ -7,7 +7,6 @@ import Footer from './components/Footer';
 import HomePageContainer from './pages/HomePage/HomePageContainer';
 import DailyDiscoverContainer from './pages/DailyDiscover/DailyDiscoverContainer';
 import { useSelector, useDispatch } from 'react-redux';
-import { auth } from './constants/config';
 import { checkUserLogin } from './redux/User/user.actions';
 import RegisterPageContainer from './pages/RegisterPage/RegisterPageContainer';
 
