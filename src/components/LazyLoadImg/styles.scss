@@ -1,0 +1,25 @@
+.lazyload-wrapper {
+    position: relative;
+    overflow: hidden;
+    height: 188px;
+
+    .img {
+        &-wrap {
+            height: 188px;
+            max-width: 100%;
+            max-height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &-placehol {
+            background-image: url('../../assets/images/img-default.svg');
+            background-repeat: no-repeat;
+            background-position: 50%;
+            background-size: contain;
+            width: 60px;
+            height: 60px;
+        }
+    }
+}

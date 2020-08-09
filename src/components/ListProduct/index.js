@@ -8,6 +8,7 @@ import product3 from '../../assets/images/product_3.jpg';
 import product4 from '../../assets/images/product_4.jpg';
 import product5 from '../../assets/images/product_5.jpg';
 import product6 from '../../assets/images/product_6.jpg';
+import LazyLoadImg from '../LazyLoadImg';
 const { Meta } = Card;
 
 const data = [
@@ -152,9 +153,9 @@ const ListProduct = (props) => {
                 locale={{emptyText: " "}}
                 renderItem={item => (
                     <List.Item>
-                        <Link to="/">
+                        <Link to={`/${item.pro_slug}`}>
                             <Card 
-                                cover={<img alt="" src={item.pro_avatar} />}
+                                cover={<LazyLoadImg url={item.pro_avatar} alt={"photo"} />}
                                 bordered={false}
                                 className="list-product-card"
                             >

@@ -9,6 +9,7 @@ import DailyDiscoverContainer from './pages/DailyDiscover/DailyDiscoverContainer
 import { useSelector, useDispatch } from 'react-redux';
 import { checkUserLogin } from './redux/User/user.actions';
 import RegisterPageContainer from './pages/RegisterPage/RegisterPageContainer';
+import DetailPageContainer from './pages/DetailPage/DetailPageContainer';
 
 const Main = withRouter(({ location }) => {
   const currentUser = useSelector(state => state.user.currentUser);
@@ -26,13 +27,14 @@ const Main = withRouter(({ location }) => {
           }
           <Switch>            
               <Route exact path="/" component={HomePageContainer} />
-              <Route path="/daily_discover" component={DailyDiscoverContainer} />
               <Route path="/login" render={() => currentUser ? <Redirect to="/" /> : (
                 <LoginPageContainer />
               )} />
               <Route path="/signup" render={() => currentUser ? <Redirect to="/" /> : (
                 <RegisterPageContainer />
               )} />
+              <Route path="/daily_discover" component={DailyDiscoverContainer} />
+              <Route path="/:slug" component={DetailPageContainer} />              
           </Switch> 
       </div>
   );  
