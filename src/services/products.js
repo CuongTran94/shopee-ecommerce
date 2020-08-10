@@ -1,4 +1,5 @@
 import { firestore } from '../constants/config';
+import ProductDetail from '../pages/DetailPage/components/ProductDetail';
 
 export const handleFetchProduct = () => {
     return new Promise((resolve, reject) => {
@@ -51,6 +52,23 @@ export const handlePaginateProduct = async ({snapshot = [], page, limit}) => {
         return items;
     }
     catch (err) {
+        throw err;
+    }
+}
+
+export const handleFetchDetailProduct = async (slug) => {
+    try {        
+        const productRef = await firestore.collection("products")
+                                             .where("pro_slug", "==", slug)
+                                             .limit(1)
+                                             .get();
+        const productDetail = productRef.docs;
+
+        if(!productDetail.length) {
+            return [];
+        }
+        return productDetail[0].data();
+    } catch(err) {
         throw err;
     }
 }

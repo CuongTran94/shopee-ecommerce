@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 import { RightOutlined } from '@ant-design/icons';
 import './styles.scss';
 
-const BreadcrumbShopee = () => {
+const BreadcrumbShopee = (props) => {
+    const { pro_name} = props;
+
     return (
         <div className="shopee-breadcrum">
             <div className="container">
@@ -13,7 +15,7 @@ const BreadcrumbShopee = () => {
                         <Link to="/">Shopee</Link>
                     </Breadcrumb.Item>
                     <Breadcrumb.Item>
-                        <Link to="/">Laptop Dell Latitude E5500, Intel Core 2 Duo</Link>
+                        <Link to="/">{pro_name}</Link>
                     </Breadcrumb.Item>
                 </Breadcrumb>
             </div>

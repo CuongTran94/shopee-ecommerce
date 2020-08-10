@@ -1,0 +1,16 @@
+.detail {
+    &-cart {
+        &-wrap {
+            margin-top: 118px;
+            overflow: hidden;
+        }
+
+        &-discount {
+            margin-top: 20px;
+        }
+
+        &-list {
+            margin-top: 10px;
+        }
+    }
+}

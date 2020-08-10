@@ -5,7 +5,8 @@ import './styles.scss';
 
 const { Title } = Typography;
 
-const ProductInfo = () => {
+const ProductInfo = (props) => {
+    const { pro_name, pro_price, pro_avatar } = props;
     return (
         <div className="detail-product-info">
             <div className="container">
@@ -15,7 +16,7 @@ const ProductInfo = () => {
                             <div className="detail-pro-media">
                                 <div className="detail-pro-img">
                                     <div className="img-avatar">
-                                        <img alt="" src="https://cf.shopee.vn/file/a54a2e1563e682785df599e6ea8c4878" />
+                                        <img alt="" src={pro_avatar} />
                                     </div>
                                     <div className="img-thumbnail">
                                         <div className="img-item">
@@ -53,7 +54,7 @@ const ProductInfo = () => {
                         </Col>
                         <Col md={{span: 14}}>
                             <div className="detail-pro-info">
-                                <Title level={3} className="detail-pro-title">Giày nữ cao cổ đổi màu khi ra nắng mẫu hot nhất mùa hè 2020 mã A1</Title>
+                                <Title level={3} className="detail-pro-title">{pro_name}</Title>
                                 <div className="detail-pro-review">
                                     <div className="rv-text star-rate">
                                         <span className="rv-text-border star-rate-num">5</span>
@@ -74,10 +75,10 @@ const ProductInfo = () => {
                                 </div>
                                 <div className="detail-pro-price">
                                     <span className="old-price">
-                                        <span className="small">đ</span>119.000
+                                        <span className="small">đ</span>{pro_price}
                                     </span>
                                     <span className="new-price">
-                                        <span className="small">đ</span>105.000
+                                        <span className="small">đ</span>{pro_price}
                                     </span>
                                     <span className="discount-price">10% giảm</span>
                                 </div>

@@ -13,6 +13,20 @@ export const fetchProducts = () => {
     };
 }
 
+export const fetchDetailProduct = (slug) => {
+    return {
+        type: productTypes.FETCH_DETAIL_PRODUCT,
+        payload: {slug}
+    };
+}
+
+export const setProductDetail = (product) => {
+    return {
+        type: productTypes.SET_DETAIL_PRODUCT,
+        payload: product
+    };
+}
+
 export const fetchTotalProduct = () => {
     return {
         type: productTypes.FETCH_PRODUCT_TOTAL        

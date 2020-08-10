@@ -1,6 +1,6 @@
-import { setProducts, setTotalProducts, setLoadingProduct } from './products.actions';
+import { setProducts, setTotalProducts, setLoadingProduct, setProductDetail } from './products.actions';
 import productTypes from './products.types';
-import { handleFetchProduct, getTotalProduct, handlePaginateProduct } from '../../services/products';
+import { handleFetchProduct, getTotalProduct, handlePaginateProduct, handleFetchDetailProduct } from '../../services/products';
 import { takeLatest, all, call, put } from 'redux-saga/effects';
 
 export function* getProducts() {
@@ -45,10 +45,24 @@ export function* onFetchPaginateProduct() {
     yield takeLatest(productTypes.FETCH_PAGINATE_PRODUCT, fetchPaginateProduct);
 }
 
+export function* fetchProductDetail({payload: {slug}}) {
+    try{
+        const product = yield call(handleFetchDetailProduct, slug);
+        yield put(setProductDetail(product));
+    } catch(err) {
+        console.log(err);
+    }    
+}
+
+export function* onFetchProductDetail() {
+    yield takeLatest(productTypes.FETCH_DETAIL_PRODUCT, fetchProductDetail);
+}
+
 export default function* productSagas() {
     yield all([
         call(onFetchProducts),
         call(onSetTotalProduct),
-        call(onFetchPaginateProduct)
+        call(onFetchPaginateProduct),
+        call(onFetchProductDetail)
     ]);
 }

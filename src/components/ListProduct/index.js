@@ -2,6 +2,7 @@ import React from 'react';
 import './styles.scss';
 import { List, Card, Space, Spin } from 'antd';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import product1 from '../../assets/images/product_1.jpg';
 import product2 from '../../assets/images/product_2.jpg';
 import product3 from '../../assets/images/product_3.jpg';
@@ -168,5 +169,13 @@ const ListProduct = (props) => {
         </React.Fragment>
     );
 };
+
+ListProduct.propTypes = {
+    listProduct: PropTypes.array
+};
+
+ListProduct.defaultProps = {
+    listProduct: []
+}
 
 export default ListProduct;
