@@ -13,7 +13,7 @@ const CartPageContainer = (props) => {
   useEffect(() => {
     if (currentUser.id !== undefined) dispatch(fetchCart(currentUser.id));
   }, [currentUser]);
-  
+ 
   return (
     <div className="cart-page">
       <ListCart />
