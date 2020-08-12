@@ -16,7 +16,37 @@ const { Title } = Typography;
 const ProductInfo = (props) => {
   const history = useHistory();
   const { pro_name, pro_price, pro_avatar, id, dispatch, currentUser } = props;
-  const [quantity, setQuantity] = useState(1);
+
+  const [pro_quantity, setPro_quantity] = useState(1);
+  const handleIncrement = () => {
+    if (pro_quantity > 99) {
+      setPro_quantity(100);
+      return;
+    }
+    setPro_quantity(pro_quantity + 1);
+  };
+
+  const handleDecrement = () => {
+    if (pro_quantity < 2) {
+      setPro_quantity(1);
+      return;
+    }
+    setPro_quantity(pro_quantity - 1);
+  };
+
+  const handleOnChange = (event) => {
+    const quantity = event.target.value;
+    if (quantity > 100) {
+      setPro_quantity(100);
+      return;
+    }
+    if (quantity < 1) {
+      setPro_quantity(1);
+      return;
+    }
+    setPro_quantity(quantity);
+  };
+
   const handleAddToCart = (cart) => {
     if (!currentUser) {
       history.push("/login");
@@ -152,9 +182,12 @@ const ProductInfo = (props) => {
                 <div className="detail-quantity">
                   <span className="detail-shipping-meta">Số lượng</span>
                   <div className="detail-number">
-                    <Button icon={<MinusOutlined />} />
-                    <Input defaultValue={1} readOnly={true} />
-                    <Button icon={<PlusOutlined />} />
+                    <Button
+                      onClick={handleDecrement}
+                      icon={<MinusOutlined />}
+                    />
+                    <Input value={pro_quantity} onChange={handleOnChange} />
+                    <Button onClick={handleIncrement} icon={<PlusOutlined />} />
                   </div>
                   <span>100 sản phẩm</span>
                 </div>
@@ -162,11 +195,11 @@ const ProductInfo = (props) => {
                   <Button
                     onClick={() => {
                       handleAddToCart({
-                        id,
+                        pro_id: id,
                         pro_name,
                         pro_price,
                         pro_avatar,
-                        quantity,
+                        pro_quantity,
                         userID: currentUser.id,
                       });
                     }}

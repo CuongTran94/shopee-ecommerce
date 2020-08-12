@@ -5,7 +5,7 @@ export const getPrice = (price, qty) => {
  export function containsObject(productID, list) {
   let i;
   for (i = 0; i < list.length; i++) {
-      if (list[i].id === productID) {
+      if (list[i].pro_id === productID) {
           return true;
       }
   }

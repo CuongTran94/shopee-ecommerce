@@ -22,23 +22,24 @@ const cartReducer = (state = { products: [], userID: null }, action) => {
     }
     case cartTypes.ADD_TO_CART: {
       const {
-        id,
+        pro_id,
         pro_name,
         pro_price,
         pro_avatar,
-        quantity,
+        pro_quantity,
         userID,
       } = action.cart;
 
       const product = {
-        id,
+        pro_id,
         pro_name,
         pro_price,
         pro_avatar,
-        quantity,
+        pro_quantity,
       };
-      
-      const check = containsObject(action.cart.id, state.products);
+
+      const check = containsObject(pro_id, state.products);
+
       if (!check) {
         return {
           products: [...state.products, product],
@@ -47,8 +48,10 @@ const cartReducer = (state = { products: [], userID: null }, action) => {
       }
       const stateClone = { ...state };
       const productsClone = stateClone.products;
-      let productFind = productsClone.find((x) => x.id === action.cart.id);
-      productFind.quantity += 1;
+      let productFind = productsClone.find(
+        (product) => product.pro_id === pro_id
+      );
+      productFind.pro_quantity += pro_quantity;
       return stateClone;
     }
     default:
