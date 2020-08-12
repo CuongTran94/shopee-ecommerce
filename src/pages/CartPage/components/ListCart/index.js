@@ -58,6 +58,7 @@ const ListCart = (props) => {
     cart: { products = [] },
   } = props;
 
+
   const newData = products.map((product) => {
     return {
       key: product.pro_id,
