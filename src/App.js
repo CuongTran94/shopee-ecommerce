@@ -1,49 +1,59 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter, Route, Switch, withRouter, Redirect } from 'react-router-dom';
-import './App.scss';
-import LoginPageContainer from './pages/LoginPage/LoginPageContainer';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import HomePageContainer from './pages/HomePage/HomePageContainer';
-import DailyDiscoverContainer from './pages/DailyDiscover/DailyDiscoverContainer';
-import { useSelector, useDispatch } from 'react-redux';
-import { checkUserLogin } from './redux/User/user.actions';
-import RegisterPageContainer from './pages/RegisterPage/RegisterPageContainer';
-import DetailPageContainer from './pages/DetailPage/DetailPageContainer';
-import CartPageContainer from './pages/CartPage/CartPageContainer';
+import React, { useEffect } from "react";
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+  withRouter,
+  Redirect,
+} from "react-router-dom";
+import "./App.scss";
+import LoginPageContainer from "./pages/LoginPage/LoginPageContainer";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import HomePageContainer from "./pages/HomePage/HomePageContainer";
+import DailyDiscoverContainer from "./pages/DailyDiscover/DailyDiscoverContainer";
+import { useSelector, useDispatch } from "react-redux";
+import { checkUserLogin } from "./redux/User/user.actions";
+import RegisterPageContainer from "./pages/RegisterPage/RegisterPageContainer";
+import DetailPageContainer from "./pages/DetailPage/DetailPageContainer";
+import CartPageContainer from "./pages/CartPage/CartPageContainer";
 
 const Main = withRouter(({ location }) => {
-  const currentUser = useSelector(state => state.user.currentUser);
+  const currentUser = useSelector((state) => state.user.currentUser);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     dispatch(checkUserLogin());
   }, []);
 
   return (
-      <div>
-          {
-            location.pathname !== '/login' && 
-            location.pathname !== '/signup' ? <Header /> : null
+    <div>
+      {location.pathname !== "/login" && location.pathname !== "/signup" ? (
+        <Header />
+      ) : null}
+      <Switch>
+        <Route exact path="/" component={HomePageContainer} />
+        <Route
+          path="/login"
+          render={() =>
+            currentUser ? <Redirect to="/" /> : <LoginPageContainer />
           }
-          <Switch>            
-              <Route exact path="/" component={HomePageContainer} />
-              <Route path="/login" render={() => currentUser ? <Redirect to="/" /> : (
-                <LoginPageContainer />
-              )} />
-              <Route path="/signup" render={() => currentUser ? <Redirect to="/" /> : (
-                <RegisterPageContainer />
-              )} />
-              <Route path="/daily_discover" component={DailyDiscoverContainer} />
-              <Route path="/cart" component={CartPageContainer} />
-              <Route path="/:slug" component={DetailPageContainer} />              
-          </Switch> 
-      </div>
-  );  
+        />
+        <Route
+          path="/signup"
+          render={() =>
+            currentUser ? <Redirect to="/" /> : <RegisterPageContainer />
+          }
+        />
+        <Route path="/daily_discover" component={DailyDiscoverContainer} />
+        <Route path="/cart" component={CartPageContainer} />
+        <Route path="/:slug" component={DetailPageContainer} />
+      </Switch>
+    </div>
+  );
 });
 
 function App() {
-  
   return (
     <BrowserRouter>
       <Route component={ScrollToTop} />
