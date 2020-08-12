@@ -99,7 +99,7 @@ const Header = () => {
                         />
                     </Col>
                     <Col md={{span: 4}}>
-                        <Link to="/#" className="header-img header-mt">
+                        <Link to="/cart" className="header-img header-mt">
                             <img src={cart} alt="cart" className="header-cart" />
                         </Link>                        
                     </Col>
