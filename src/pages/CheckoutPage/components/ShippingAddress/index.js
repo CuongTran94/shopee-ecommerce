@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Input, Button, Radio, Typography, Select } from 'antd';
 import './styles.scss';
@@ -11,13 +11,18 @@ const layout = {
 };
 
 const ShippingAddress = () => {
+    const [state, setState] = useState('male');
+    const handleChange = (e) => {
+        setState(e.target.value);
+    }
+
     return (
         <div className="checkout-address">
             <Title level={3}>Thông tin người mua</Title>
             <Form {...layout} name="form-shipping">
                 <Form.Item name="gender">
-                    <Radio.Group>
-                        <Radio value="male" selected>Anh</Radio>
+                    <Radio.Group defaultValue={state} onChange={handleChange}>
+                        <Radio value="male">Anh</Radio>
                         <Radio value="female">Chị</Radio>
                     </Radio.Group>                    
                 </Form.Item>
@@ -68,7 +73,7 @@ const ShippingAddress = () => {
                     </Select>
                 </Form.Item>
                 <Form.Item wrapperCol={{span: 24}} style={{textAlign: "right"}}>
-                    <Button htmlType="submit">
+                    <Button htmlType="submit" className="btn-checkout">
                         Tiếp tục
                     </Button>
                 </Form.Item>
