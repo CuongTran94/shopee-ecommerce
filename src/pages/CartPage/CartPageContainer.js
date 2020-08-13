@@ -1,6 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-import ListCart from "./ListCart";
+import React from 'react';
+import PropTypes from 'prop-types';
+import ListCart from './components/ListCart';
+import CartTotal from './components/CartTotal';
 
 const CartPageContainer = () => {
   return (

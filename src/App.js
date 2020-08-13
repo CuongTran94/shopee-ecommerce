@@ -11,6 +11,7 @@ import { checkUserLogin } from './redux/User/user.actions';
 import RegisterPageContainer from './pages/RegisterPage/RegisterPageContainer';
 import DetailPageContainer from './pages/DetailPage/DetailPageContainer';
 import CartPageContainer from './pages/CartPage/CartPageContainer';
+import CheckoutPageContainer from './pages/CheckoutPage/CheckoutPageContainer';
 
 const Main = withRouter(({ location }) => {
   const currentUser = useSelector(state => state.user.currentUser);
@@ -35,6 +36,7 @@ const Main = withRouter(({ location }) => {
                 <RegisterPageContainer />
               )} />
               <Route path="/daily_discover" component={DailyDiscoverContainer} />
+              <Route path="/checkout" component={CheckoutPageContainer} />
               <Route path="/cart" component={CartPageContainer} />
               <Route path="/:slug" component={DetailPageContainer} />              
           </Switch> 
