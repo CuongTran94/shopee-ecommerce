@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Row, Col, Typography, Button, Input, Divider } from "antd";
 import {
   StarFilled,
@@ -8,19 +9,50 @@ import {
   HeartOutlined,
 } from "@ant-design/icons";
 import "./styles.scss";
-import { useHistory } from "react-router-dom";
+import { addToCart } from "../../../../redux/Cart/cart.actions";
 
 const { Title } = Typography;
 
 const ProductInfo = (props) => {
   const history = useHistory();
-  const { pro_name, pro_price, pro_avatar, id, currentUser } = props;
+  const { pro_name, pro_price, pro_avatar, id, dispatch, currentUser } = props;
 
-  const handleRiderect = () => {
+  const [pro_quantity, setPro_quantity] = useState(1);
+  const handleIncrement = () => {
+    if (pro_quantity > 99) {
+      setPro_quantity(100);
+      return;
+    }
+    setPro_quantity(pro_quantity + 1);
+  };
+
+  const handleDecrement = () => {
+    if (pro_quantity < 2) {
+      setPro_quantity(1);
+      return;
+    }
+    setPro_quantity(pro_quantity - 1);
+  };
+
+  const handleOnChange = (event) => {
+    const quantity = event.target.value;
+    if (quantity > 100) {
+      setPro_quantity(100);
+      return;
+    }
+    if (quantity < 1) {
+      setPro_quantity(1);
+      return;
+    }
+    setPro_quantity(quantity);
+  };
+
+  const handleAddToCart = (cart) => {
     if (!currentUser) {
       history.push("/login");
       return;
     }
+    dispatch(addToCart(cart));
   };
 
   return (
@@ -150,15 +182,27 @@ const ProductInfo = (props) => {
                 <div className="detail-quantity">
                   <span className="detail-shipping-meta">Số lượng</span>
                   <div className="detail-number">
-                    <Button icon={<MinusOutlined />} />
-                    <Input defaultValue={1} readOnly={true} />
-                    <Button icon={<PlusOutlined />} />
+                    <Button
+                      onClick={handleDecrement}
+                      icon={<MinusOutlined />}
+                    />
+                    <Input value={pro_quantity} onChange={handleOnChange} />
+                    <Button onClick={handleIncrement} icon={<PlusOutlined />} />
                   </div>
                   <span>100 sản phẩm</span>
                 </div>
                 <div className="detail-btn-buy">
                   <Button
-                    onClick={handleRiderect}
+                    onClick={() => {
+                      handleAddToCart({
+                        pro_id: id,
+                        pro_name,
+                        pro_price,
+                        pro_avatar,
+                        pro_quantity,
+                        userID: currentUser.id,
+                      });
+                    }}
                     icon={<ShoppingCartOutlined />}
                     className="btn-cart"
                   >

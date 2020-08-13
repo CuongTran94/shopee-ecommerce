@@ -8,17 +8,17 @@ export const fetchCart = (userID) => {
 };
 
 export const setCart = (cart) => {
-
   return {
     type: cartTypes.SET_CART,
     cart,
   };
 };
 
-export const addToCart = (id) => {
+export const addToCart = (cart) => {
+  
   return {
     type: cartTypes.ADD_TO_CART,
-    id,
+    cart,
   };
 };
 

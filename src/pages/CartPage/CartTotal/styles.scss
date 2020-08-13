@@ -1,0 +1,114 @@
+.detail {
+    &-cart {
+        &-inner {
+            margin-top: 25px;
+            margin-bottom: 70px;
+            display: grid;
+            grid-template-columns: 685px 325px 190px;
+            background: #fff;
+        }
+
+        &-voucher {
+            display: flex;
+            justify-content: space-between;
+            font-size: 16px;
+            color: #333;
+            align-items: center;
+
+            &__code {
+                margin-right: 30px;
+                font-size: 15px;
+                color: #1462B0;
+            }
+        }
+
+        &-xu {
+            margin-right: 14px;
+        }
+
+        &-summary {
+            display: flex;
+            align-items: center;
+            color: #333;
+            font-size: 16px;
+
+            &__total {
+                font-size: 30px;
+                font-weight: 600;
+                color: #E94B2C;
+                letter-spacing: 0.5px;
+                margin-left: 8px;
+                margin-right: 16px;
+            }
+
+            &__buy {
+                min-width: 210px;
+                line-height: 40px;
+                height: 40px;
+                padding: 0 20px;
+                background: #E94B2C;
+                color: #fff;
+                text-transform: capitalize;
+                margin-right: 22px;
+
+                &:hover, &:focus {
+                    color: #fff;
+                    background: #E94B2C;
+                    border-color: #E94B2C;
+                }
+            }
+        }
+
+        &-total {
+            &-col {
+                grid-column-start: 2;
+                grid-column-end: 4;
+                padding: 12px 0;
+
+                &__border {
+                    grid-column-start: 1;
+                    grid-column-end: 4;
+                    border-top: 1px dashed rgba(0,0,0,.09);
+                }
+
+                &__check {
+                    grid-column-start: 1;
+                    grid-column-end: 2;
+                    padding: 20px;
+                }
+
+                &__title {
+                    grid-column-start: 2;
+                    grid-column-end: 3;
+                    margin: auto 0;
+                }
+
+                &__value {
+                    grid-column-start: 3;
+                    grid-column-end: 4;
+                    display: flex;
+                    justify-content: flex-end;
+                    margin-right: 30px;
+                    align-items: center;
+                }
+
+                &__checkout {
+                    grid-column-start: 1;
+                    grid-column-end: 4;
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 12px 0;
+
+                    .all-text {
+                        margin-left: 20px;
+                        display: flex;
+                        align-items: center;
+                        font-size: 16px;
+                        text-transform: capitalize;
+                        color: #333;
+                    }
+                }
+            }
+        }
+    }
+}

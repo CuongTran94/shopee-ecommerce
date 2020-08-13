@@ -16,6 +16,14 @@ export const handleFetchCart = () => {
   });
 };
 
+export const addToCartFirebase = (cart) => {
+  firestore.collection("carts").add(cart);
+};
+
+export const updateCartFirebase = (cart, id) => {
+  firestore.collection("carts").doc(id).set(cart);
+};
+
 export const fetchCartByUserID = async (userID) => {
   try {
     const cartRef = await firestore
@@ -24,15 +32,13 @@ export const fetchCartByUserID = async (userID) => {
       .limit(1)
       .get();
     const cart = cartRef.docs;
+    if (cart.length === 0) return {};
     const { id } = cart[0];
     const data = cart[0].data();
     const newCart = {
       id: id,
       ...data,
     };
-    if (!cart.length) {
-      return [];
-    }
     return newCart;
   } catch (err) {
     throw err;
