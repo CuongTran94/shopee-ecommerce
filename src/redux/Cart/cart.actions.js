@@ -15,7 +15,6 @@ export const setCart = (cart) => {
 };
 
 export const addToCart = (cart) => {
-  
   return {
     type: cartTypes.ADD_TO_CART,
     cart,
@@ -25,7 +24,7 @@ export const addToCart = (cart) => {
 export const deleteItem = (id) => {
   return {
     type: cartTypes.DELETE_ITEM_CART,
-    payload: id,
+    id,
   };
 };
 
