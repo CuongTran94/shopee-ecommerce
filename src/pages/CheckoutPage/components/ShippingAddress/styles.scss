@@ -2,7 +2,6 @@
     &-address {
         border: 1px solid #e9e9e9;
         margin-top: 20px;
-        margin-bottom: 70px;
 
         h3 {
             padding: 15px;
@@ -15,6 +14,34 @@
 
             .ant-form-item-label {
                 text-align: left;
+            }
+
+            
+
+            .ant-radio-checked .ant-radio-inner {
+                border-color: #EE4D2D;
+                
+                &:after {
+                    background-color: #EE4D2D;
+                }
+            }
+
+            .ant-radio-wrapper:hover .ant-radio, .ant-radio:hover .ant-radio-inner {
+                border-color: #EE4D2D;
+            }
+        }
+    }
+
+    &-form {
+        .btn-checkout {
+            width: 148px;
+            height: 40px;
+            background: #EE4D2D;
+            color: #fff;
+            font-size: 16px;
+
+            &:hover, &:focus {
+                border-color: #EE4D2D;
             }
         }
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CheckoutStep from './components/Steps/CheckoutStep';
+import CheckoutStep from './components/Steps';
 
 const CheckoutPageContainer = () => {
     return (

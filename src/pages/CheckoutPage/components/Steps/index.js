@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Steps, Row, Col } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAddressCard, faCreditCard, faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faAddressCard, faCreditCard, faCheck } from '@fortawesome/free-solid-svg-icons';
 import './styles.scss';
 import ShippingAddress from '../ShippingAddress';
+import OrderReview from '../OrderReview';
+import PaymentMethod from '../Payment';
 
 const { Step } = Steps;
 
@@ -25,10 +27,12 @@ const CheckoutStep = () => {
                             <Step title="Hoàn tất đơn hàng" icon={<FontAwesomeIcon icon={faCheck} />}></Step>
                         </Steps>
                         <div className="checkout-form">
-                            <ShippingAddress />
+                            {current === 0 ? <ShippingAddress /> : <PaymentMethod />}
                         </div>
                     </Col>
-                    <Col span={8}>Product</Col>
+                    <Col span={8}>
+                        <OrderReview />
+                    </Col>
                 </Row>                
             </div>
         </div>
