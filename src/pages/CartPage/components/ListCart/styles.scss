@@ -1,92 +1,92 @@
 .detail {
-    &-cart {
-        margin-top: 118px;
-        overflow: hidden;
+  &-cart {
+    margin-top: 118px;
+    overflow: hidden;
 
-        &-discount {
-            margin-top: 20px;
-            background: #FFFEFB;
-            padding: 13px;
-            border: 1px solid #F3DC97;
-            border-radius: 2px;
-            color: #333;
+    &-discount {
+      margin-top: 20px;
+      background: #fffefb;
+      padding: 13px;
+      border: 1px solid #f3dc97;
+      border-radius: 2px;
+      color: #333;
 
-            &::before {
-                content: "";
-                background: url('../../../../assets/images/free-icon.png') no-repeat;
-                background-size: contain;
-                width: 25px;
-                height: 15px;
-                float: left;
-                margin: 5px 9px 0 0;
-            }            
-        }
-
-        &-list {
-            margin-top: 10px;            
-        }
-
-        .product-cart {
-            a {
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-            }
-
-            &-img {
-                display: inline-block;
-                width: 80px;
-                height: 80px;
-            }
-
-            span {
-                display: inline-block;
-                color: #333;
-                margin-left: 10px;
-                width: 300px;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                display: -webkit-box;
-                -webkit-box-orient: vertical;
-                -webkit-line-clamp: 2;
-            }
-            
-            &-del {
-                color: #333;
-
-                &:hover {
-                    color: #EE4D2D;
-                }
-            }
-        }
-
-        table {
-            color: #333;
-
-            .detail-quantity {
-                margin-top: 0;
-            }
-        }
-
-        .ant-table-thead > tr > th {
-            background: #fff;
-        }
-
-        .ant-table-tbody > tr.ant-table-row-selected > td {
-            background: #fff;
-        }
-
-        .ant-checkbox-checked .ant-checkbox-inner {
-            background-color: #EE4D2D;
-            border-color: #EE4D2D !important;
-        }
-
-        .ant-checkbox-input:focus + .ant-checkbox-inner {
-            border-color: #EE4D2D !important;
-        }
-
-        .ant-checkbox-indeterminate .ant-checkbox-inner::after {
-            background-color: #EE4D2D !important;
-        }
+      &::before {
+        content: "";
+        background: url("../../../../assets/images/free-icon.png") no-repeat;
+        background-size: contain;
+        width: 25px;
+        height: 15px;
+        float: left;
+        margin: 5px 9px 0 0;
+      }
     }
+
+    &-list {
+      margin-top: 10px;
+    }
+
+    .product-cart {
+      a {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+
+      &-img {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+      }
+
+      span {
+        display: inline-block;
+        color: #333;
+        margin-left: 10px;
+        width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+      }
+
+      &-del {
+        color: #333;
+        cursor: pointer;
+        &:hover {
+          color: #ee4d2d;
+        }
+      }
+    }
+
+    table {
+      color: #333;
+
+      .detail-quantity {
+        margin-top: 0;
+      }
+    }
+
+    .ant-table-thead > tr > th {
+      background: #fff;
+    }
+
+    .ant-table-tbody > tr.ant-table-row-selected > td {
+      background: #fff;
+    }
+
+    .ant-checkbox-checked .ant-checkbox-inner {
+      background-color: #ee4d2d;
+      border-color: #ee4d2d !important;
+    }
+
+    .ant-checkbox-input:focus + .ant-checkbox-inner {
+      border-color: #ee4d2d !important;
+    }
+
+    .ant-checkbox-indeterminate .ant-checkbox-inner::after {
+      background-color: #ee4d2d !important;
+    }
+  }
 }

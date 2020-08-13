@@ -54,6 +54,15 @@ const cartReducer = (state = { products: [], userID: null }, action) => {
       productFind.pro_quantity += pro_quantity;
       return stateClone;
     }
+    case cartTypes.DELETE_ITEM_CART: {
+      const { id } = action;
+      const stateClone = { ...state };
+      const { products } = stateClone;
+      const newProducts = products.filter((product) => product.pro_id !== id);
+      stateClone.products = newProducts;
+      console.log(stateClone);
+      return stateClone;
+    }
     default:
       return state;
   }

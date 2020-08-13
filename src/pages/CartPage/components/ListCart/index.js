@@ -46,16 +46,21 @@ const columns = [
   },
   {
     title: "Thao Tác",
-    dataIndex: "",
+    dataIndex: "delete",
     width: 150,
     key: "x",
-    render: () => <a className="product-cart-del">Xóa</a>,
+    render: (onDelete) => (
+      <div onClick={onDelete} className="product-cart-del">
+        Xóa
+      </div>
+    ),
   },
 ];
 
 const ListCart = (props) => {
   const {
     cart: { products = [] },
+    onDelete,
   } = props;
 
   const newData = products.map((product) => {
@@ -68,10 +73,10 @@ const ListCart = (props) => {
       price: product.pro_price,
       quantity: product.pro_quantity,
       total: getPrice(product.pro_price, product.pro_quantity),
+      delete: () => onDelete(product.pro_id),
     };
   });
 
-  console.log("new data", newData);
   return (
     <div className="detail-cart">
       <div className="container">
