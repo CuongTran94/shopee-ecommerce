@@ -1,6 +1,6 @@
-import cartTypes from "./cart.types";
-import { act } from "@testing-library/react";
-import { containsObject } from "../../utils/cart";
+import cartTypes from './cart.types';
+import { act } from '@testing-library/react';
+import { containsObject } from '../../utils/cart';
 
 const initState = {
   products: [
