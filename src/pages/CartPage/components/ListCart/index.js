@@ -4,7 +4,7 @@ import { Table, Button, Input } from "antd";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 import "./styles.scss";
 import { Link } from "react-router-dom";
-import { getPrice } from "../../../utils/cart";
+import { getPrice } from "../../../../utils/cart";
 
 const columns = [
   {
@@ -57,7 +57,6 @@ const ListCart = (props) => {
   const {
     cart: { products = [] },
   } = props;
-
 
   const newData = products.map((product) => {
     return {

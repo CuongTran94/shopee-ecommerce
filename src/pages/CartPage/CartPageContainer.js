@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
-import ListCart from "./ListCart";
+import ListCart from "./components/ListCart";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCart } from "../../redux/Cart/cart.actions";
 
