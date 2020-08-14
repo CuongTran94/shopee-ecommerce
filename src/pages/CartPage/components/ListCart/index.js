@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Table, Button, Input } from 'antd';
+import { Table, Button, Input, Modal } from 'antd';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import './styles.scss';
 import { Link } from 'react-router-dom';
@@ -79,6 +79,27 @@ const ListCart = props => {
     setProductQuantity(quantity);
   }, [props]);
 
+  const confirmDelete = (id, name) => {
+    Modal.confirm({
+      title: 'Bạn chắc chắn muốn bỏ sản phẩm này?',
+      content: name,
+      okText: 'Có',
+      okType: 'danger',
+      centered: true,
+      keyboard: true,
+      width: 540,
+      icon: '',
+      cancelText: 'Không',
+      className: 'confirm-delete',
+      onOk() {
+        onDelete(id);
+      },
+      onCancel() {
+        console.log('Cancel');
+      }
+    });
+  };
+
   const newData = products.map(product => {
     return {
       key: product.pro_id,
@@ -102,7 +123,7 @@ const ListCart = props => {
         }
       },
       total: getPrice(product.pro_price, product.pro_quantity),
-      delete: () => onDelete(product.pro_id)
+      delete: () => confirmDelete(product.pro_id, product.pro_name)
     };
   });
 
