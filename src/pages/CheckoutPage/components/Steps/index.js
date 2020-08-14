@@ -6,6 +6,7 @@ import './styles.scss';
 import ShippingAddress from '../ShippingAddress';
 import OrderReview from '../OrderReview';
 import PaymentMethod from '../Payment';
+import CheckoutSuccess from '../CheckoutSuccess';
 
 const { Step } = Steps;
 
@@ -15,6 +16,17 @@ const CheckoutStep = () => {
     const onChange = (current) => {
         setCurrent(current);
     }
+
+    const renderStepForm = () => {
+        if(current === 0) {
+            return <ShippingAddress />;
+        } else {
+            if(current === 1) {
+                return <PaymentMethod />;
+            }
+        }
+        return <CheckoutSuccess />
+    };
 
     return (
         <div className="checkout-step">
@@ -27,7 +39,9 @@ const CheckoutStep = () => {
                             <Step title="Hoàn tất đơn hàng" icon={<FontAwesomeIcon icon={faCheck} />}></Step>
                         </Steps>
                         <div className="checkout-form">
-                            {current === 0 ? <ShippingAddress /> : <PaymentMethod />}
+                            {
+                                renderStepForm()
+                            }
                         </div>
                     </Col>
                     <Col span={8}>
