@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Row, Col, Typography, Button, Input, Divider } from "antd";
+import { Row, Col, Typography, Button, Input, Divider, Modal } from "antd";
 import {
   StarFilled,
   MinusOutlined,
   PlusOutlined,
   ShoppingCartOutlined,
   HeartOutlined,
+  CheckCircleTwoTone
 } from "@ant-design/icons";
 import "./styles.scss";
 import { addToCart } from "../../../../redux/Cart/cart.actions";
@@ -52,8 +53,24 @@ const ProductInfo = (props) => {
       history.push("/login");
       return;
     }
+    messageAddCart();
     dispatch(addToCart(cart));
   };
+
+  const messageAddCart = () => {
+    const modal = Modal.success({
+      content: 'Sản phẩm đã được thêm vào giỏ hàng',
+      centered: true,
+      width: 340,
+      okButtonProps: { hidden: true },
+      icon: <CheckCircleTwoTone twoToneColor="#00BFA5" />,
+      className: 'success-add-cart'
+    });
+
+    setTimeout(() => {
+      modal.destroy();
+    }, 2000);
+  }
 
   return (
     <div className="detail-product-info">
