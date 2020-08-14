@@ -346,3 +346,70 @@
         }
     }
 }
+
+.success-add-cart {
+    .ant-modal {
+        &-content {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        &-body {
+            padding: 24px 16px;
+        }
+
+        &-confirm {
+            &-body {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .anticon {
+                    font-size: 40px;
+                    margin-top: 16px;
+                }
+            }
+            &-content {
+                color: #fff;
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+.confirm-delete {
+    .ant-modal {
+        &-body {
+            padding: 22px;            
+        }
+
+        &-confirm-title {
+            font-size: 24px;
+            color: #EE4D2D;
+        }
+
+        &-confirm-content {
+            margin-top: 30px;
+            color: #333;
+            font-size: 15px;
+        }
+
+        &-confirm-btns {
+            display: flex;
+            margin-top: 96px;
+            flex-direction: row-reverse;
+            float: none;
+
+            .ant-btn {
+                width: 100%;
+                margin: 0;
+
+                &-dangerous {
+                    color: #fff;
+                    background-color: #EE4D2D;
+                    border-color: #EE4D2D;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}
