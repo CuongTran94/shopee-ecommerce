@@ -1,5 +1,4 @@
 import cartTypes from './cart.types';
-import { act } from '@testing-library/react';
 import { containsObject } from '../../utils/cart';
 
 const initState = {
@@ -9,10 +8,10 @@ const initState = {
       pro_name: null,
       pro_avatar: null,
       pro_price: null,
-      pro_quantity: null,
-    },
+      pro_quantity: null
+    }
   ],
-  userID: null,
+  userID: null
 };
 
 const cartReducer = (state = { products: [], userID: null }, action) => {
@@ -27,7 +26,7 @@ const cartReducer = (state = { products: [], userID: null }, action) => {
         pro_price,
         pro_avatar,
         pro_quantity,
-        userID,
+        userID
       } = action.cart;
 
       const product = {
@@ -35,7 +34,7 @@ const cartReducer = (state = { products: [], userID: null }, action) => {
         pro_name,
         pro_price,
         pro_avatar,
-        pro_quantity,
+        pro_quantity
       };
 
       const check = containsObject(pro_id, state.products);
@@ -43,13 +42,13 @@ const cartReducer = (state = { products: [], userID: null }, action) => {
       if (!check) {
         return {
           products: [...state.products, product],
-          userID: userID,
+          userID
         };
       }
       const stateClone = { ...state };
       const productsClone = stateClone.products;
-      let productFind = productsClone.find(
-        (product) => product.pro_id === pro_id
+      const productFind = productsClone.find(
+        productClone => productClone.pro_id === pro_id
       );
       productFind.pro_quantity += pro_quantity;
       return stateClone;
@@ -58,9 +57,32 @@ const cartReducer = (state = { products: [], userID: null }, action) => {
       const { id } = action;
       const stateClone = { ...state };
       const { products } = stateClone;
-      const newProducts = products.filter((product) => product.pro_id !== id);
+      const newProducts = products.filter(product => product.pro_id !== id);
       stateClone.products = newProducts;
-      console.log(stateClone);
+      return stateClone;
+    }
+    case cartTypes.DECREASE_ITEM_QUANTITY: {
+      const { id } = action;
+      const stateClone = { ...state };
+      const { products } = stateClone;
+      const newProduct = products.find(product => product.pro_id === id);
+      newProduct.pro_quantity -= 1;
+      return stateClone;
+    }
+    case cartTypes.INCREASE_ITEM_QUANTITY: {
+      const { id } = action;
+      const stateClone = { ...state };
+      const { products } = stateClone;
+      const newProduct = products.find(product => product.pro_id === id);
+      newProduct.pro_quantity += 1;
+      return stateClone;
+    }
+    case cartTypes.CHANGE_ITEM_QUANTITY: {
+      const { id, pro_quantity } = action;
+      const stateClone = { ...state };
+      const { products } = stateClone;
+      const newProduct = products.find(product => product.pro_id === id);
+      newProduct.pro_quantity = pro_quantity;
       return stateClone;
     }
     default:

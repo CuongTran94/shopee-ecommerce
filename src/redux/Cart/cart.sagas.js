@@ -1,14 +1,14 @@
-import { takeLatest, all, call, put, select } from "redux-saga/effects";
-import { setCart } from "./cart.actions";
-import cartTypes from "./cart.types";
+import { takeLatest, all, call, put, select } from 'redux-saga/effects';
+import { setCart } from './cart.actions';
+import cartTypes from './cart.types';
 import {
   fetchCartByUserID,
   addToCartFirebase,
-  updateCartFirebase,
-} from "../../services/carts";
-import { emptyObject } from "../../utils/cart";
+  updateCartFirebase
+} from '../../services/carts';
+import { emptyObject } from '../../utils/cart';
 
-export const getCurrentUser = (state) => state.currentUser;
+export const getCurrentUser = state => state.currentUser;
 
 export function* fetchCart(action) {
   try {
@@ -28,7 +28,7 @@ export function* watchFetchCart() {
 export function* handleAddToCart(action) {
   const { cart } = action;
   try {
-    const cartFromState = yield select((state) => state.cart);
+    const cartFromState = yield select(state => state.cart);
     const cartFromServer = yield call(fetchCartByUserID, cart.userID);
     if (emptyObject(cartFromServer)) {
       yield call(addToCartFirebase, cartFromState);
@@ -45,7 +45,7 @@ export function* watchAddToCart() {
 }
 
 export function* handleDeleteItem(action) {
-  const cart = yield select((state) => state.cart);
+  const cart = yield select(state => state.cart);
   const cartFromServer = yield call(fetchCartByUserID, cart.userID);
   try {
     yield call(() => updateCartFirebase(cart, cartFromServer.id));
@@ -58,10 +58,37 @@ export function* watchDeleteItem() {
   yield takeLatest(cartTypes.DELETE_ITEM_CART, handleDeleteItem);
 }
 
+export function* handleChangeQuantity() {
+  const cart = yield select(state => state.cart);
+  try {
+    const cartFromServer = yield call(fetchCartByUserID, cart.userID);
+    yield call(() => updateCartFirebase(cart, cartFromServer.id));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function* watchDecreaseQuantity() {
+  yield takeLatest(cartTypes.DECREASE_ITEM_QUANTITY, handleChangeQuantity);
+}
+
+
+
+export function* watchIncreaseQuantity() {
+  yield takeLatest(cartTypes.INCREASE_ITEM_QUANTITY, handleChangeQuantity);
+}
+
+export function* watchHandleChangeQuantiy() {
+  yield takeLatest(cartTypes.CHANGE_ITEM_QUANTITY, handleChangeQuantity);
+}
+
 export default function* cartSagas() {
   yield all([
     call(watchFetchCart),
     call(watchAddToCart),
     call(watchDeleteItem),
+    call(watchDecreaseQuantity),
+    call(watchIncreaseQuantity),
+    call(watchHandleChangeQuantiy)
   ]);
 }
