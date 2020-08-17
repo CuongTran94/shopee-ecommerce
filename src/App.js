@@ -18,6 +18,7 @@ import RegisterPageContainer from "./pages/RegisterPage/RegisterPageContainer";
 import DetailPageContainer from "./pages/DetailPage/DetailPageContainer";
 import CartPageContainer from "./pages/CartPage/CartPageContainer";
 import CheckoutPageContainer from "./pages/CheckoutPage/CheckoutPageContainer";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const Main = withRouter(({ location }) => {
   const currentUser = useSelector((state) => state.user.currentUser);
@@ -34,21 +35,11 @@ const Main = withRouter(({ location }) => {
       ) : null}
       <Switch>
         <Route exact path="/" component={HomePageContainer} />
-        <Route
-          path="/login"
-          render={() =>
-            currentUser ? <Redirect to="/" /> : <LoginPageContainer />
-          }
-        />
-        <Route
-          path="/signup"
-          render={() =>
-            currentUser ? <Redirect to="/" /> : <RegisterPageContainer />
-          }
-        />
+        <Route path="/login" component={LoginPageContainer} />
+        <Route path="/signup" component={RegisterPageContainer} />
+        <ProtectedRoute path="/checkout" loggedIn={currentUser} component={CheckoutPageContainer} />
+        <ProtectedRoute path="/cart" loggedIn={currentUser} component={CartPageContainer} />
         <Route path="/daily_discover" component={DailyDiscoverContainer} />
-        <Route path="/checkout" component={CheckoutPageContainer} />
-        <Route path="/cart" component={CartPageContainer} />
         <Route path="/:slug" component={DetailPageContainer} />
       </Switch>
     </div>

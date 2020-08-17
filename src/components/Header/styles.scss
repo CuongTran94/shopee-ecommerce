@@ -61,6 +61,11 @@
             font-size: 13px;
             padding: 0 7px;            
             line-height: 17px;
+            margin: 0;
+
+            &:hover {
+                border-bottom: none;
+            }
 
             &:nth-last-child(2) {
                 border-right: 0;
