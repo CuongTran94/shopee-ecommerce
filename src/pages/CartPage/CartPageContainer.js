@@ -11,15 +11,23 @@ import {
   handleQuantity
 } from '../../redux/Cart/cart.actions';
 import CartTotal from './components/CartTotal';
+import {
+  addProductsToOrder,
+  fetchOrder
+} from '../../redux/Order/order.actions';
 
 const CartPageContainer = props => {
   const currentUser = useSelector(state => state.user.currentUser) || {};
 
   const cart = useSelector(state => state.cart) || {};
+  const order = useSelector(state => state.order) || {};
 
   const dispatch = useDispatch();
   useEffect(() => {
-    if (currentUser.id !== undefined) dispatch(fetchCart(currentUser.id));
+    if (currentUser.id !== undefined) {
+      dispatch(fetchCart(currentUser.id));
+      dispatch(fetchOrder(currentUser.id));
+    }
   }, [currentUser]);
 
   const handleDelete = id => {
@@ -38,6 +46,11 @@ const CartPageContainer = props => {
     dispatch(handleQuantity(id, Number(pro_quantity)));
   };
 
+  const handleCheckout = () => {
+    const products = [...cart.products];
+    dispatch(addProductsToOrder(products, currentUser.id));
+  };
+
   return (
     <div className="cart-page">
       <ListCart
@@ -47,7 +60,7 @@ const CartPageContainer = props => {
         onDelete={handleDelete}
         cart={cart}
       />
-      <CartTotal />
+      <CartTotal handleCheckout={handleCheckout} />
     </div>
   );
 };
