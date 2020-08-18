@@ -6,10 +6,10 @@ import { signUp, signIn, getUserProfile, getCurrentUser } from '../../services/u
 
 // Sign out user
 export function* signOutUser() {
-    try{
+    try {
         yield auth.signOut();
         yield put(clearCurrentUser());
-    } catch(err) {
+    } catch (err) {
         console.log(err);
     }
 }
@@ -19,11 +19,11 @@ export function* onSignOutUser() {
 }
 
 // Sign up user
-export function* signUpUser({payload: {username, email, password}}) {
+export function* signUpUser({ payload: { username, email, password } }) {
     try {
-        const userCreate = yield call(signUp, {email, password});
+        const userCreate = yield call(signUp, { email, password });
         const name = { username };
-        const userRef = yield call(getUserProfile, {userAuth: userCreate, data: name});
+        const userRef = yield call(getUserProfile, { userAuth: userCreate, data: name });
         const userCurrent = yield userRef.get();
         yield put(setCurrentUser({
             id: userCurrent.id,
@@ -31,7 +31,7 @@ export function* signUpUser({payload: {username, email, password}}) {
         }));
         yield put(setLoading());
     }
-    catch(err) {
+    catch (err) {
         yield put(signUpFail(err));
         yield put(setLoading());
     }
@@ -42,17 +42,17 @@ export function* onSignUpUser() {
 }
 
 // Sign in user
-export function* signInUser({payload: {email, password}}) {
+export function* signInUser({ payload: { email, password } }) {
     try {
-        const userSignIn = yield call(signIn, {email, password});
-        const userRef = yield call(getUserProfile, {userAuth: userSignIn, data: {}});
+        const userSignIn = yield call(signIn, { email, password });
+        const userRef = yield call(getUserProfile, { userAuth: userSignIn, data: {} });
         const userCurrent = yield userRef.get();
         yield put(setCurrentUser({
             id: userCurrent.id,
             ...userCurrent.data()
         }));
         yield put(setLoading());
-    } catch(err) {
+    } catch (err) {
         yield put(loginFailed(err));
         yield put(setLoading());
     }
@@ -66,16 +66,16 @@ export function* onSignInUser() {
 export function* isUserAuth() {
     try {
         const userAuth = yield getCurrentUser();
-        if(!userAuth) return;
-        const userRef = yield call(getUserProfile, {userAuth, data: {}});
+        if (!userAuth) return;
+        const userRef = yield call(getUserProfile, { userAuth, data: {} });
         const userCurrent = yield userRef.get();
         yield put(setCurrentUser({
             id: userCurrent.id,
             ...userCurrent.data()
         }));
-    } catch(err) {
+    } catch (err) {
         console.log(err);
-    }    
+    }
 }
 
 export function* onIsUserAuth() {
