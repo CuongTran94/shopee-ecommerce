@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { Table, Button, Input, Modal } from 'antd';
+import { Table, Button, Input } from 'antd';
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
-import './styles.scss';
 import { Link } from 'react-router-dom';
+import ConfirmMessage from '../../../../components/ConfirmMessage';
+import './styles.scss';
 import { getPrice } from '../../../../utils/cart';
+import {
+  DELETE_MESSAGE,
+  INVENTORY_NOT_ENOUGH_MESSAGE
+} from '../../../../constants/messages';
 
 const columns = [
   {
@@ -69,7 +73,6 @@ const ListCart = props => {
     onIncrement,
     onBlur
   } = props;
-
   const [productQuantity, setProductQuantity] = useState(products);
   useEffect(() => {
     const quantity = products.reduce(
@@ -78,27 +81,6 @@ const ListCart = props => {
     );
     setProductQuantity(quantity);
   }, [props]);
-
-  const confirmDelete = (id, name) => {
-    Modal.confirm({
-      title: 'Bạn chắc chắn muốn bỏ sản phẩm này?',
-      content: name,
-      okText: 'Có',
-      okType: 'danger',
-      centered: true,
-      keyboard: true,
-      width: 540,
-      icon: '',
-      cancelText: 'Không',
-      className: 'confirm-delete',
-      onOk() {
-        onDelete(id);
-      },
-      onCancel() {
-        console.log('Cancel');
-      }
-    });
-  };
 
   const newData = products.map(product => {
     return {
@@ -119,11 +101,27 @@ const ListCart = props => {
           });
         },
         onBlur: () => {
+          if (productQuantity[product.pro_id] > product.pro_inventory) {
+            ConfirmMessage(
+              product.pro_id,
+              product.pro_name,
+              INVENTORY_NOT_ENOUGH_MESSAGE,
+              () => {}
+            );
+            onBlur(product.pro_id, product.pro_inventory);
+            return;
+          }
           onBlur(product.pro_id, productQuantity[product.pro_id]);
         }
       },
       total: getPrice(product.pro_price, product.pro_quantity),
-      delete: () => confirmDelete(product.pro_id, product.pro_name)
+      delete: () =>
+        ConfirmMessage(
+          product.pro_id,
+          product.pro_name,
+          DELETE_MESSAGE,
+          onDelete
+        )
     };
   });
 

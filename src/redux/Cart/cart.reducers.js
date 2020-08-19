@@ -26,6 +26,7 @@ const cartReducer = (state = { products: [], userID: null }, action) => {
         pro_price,
         pro_avatar,
         pro_quantity,
+        pro_inventory,
         userID
       } = action.cart;
 
@@ -34,7 +35,8 @@ const cartReducer = (state = { products: [], userID: null }, action) => {
         pro_name,
         pro_price,
         pro_avatar,
-        pro_quantity
+        pro_quantity,
+        pro_inventory
       };
 
       const check = containsObject(pro_id, state.products);

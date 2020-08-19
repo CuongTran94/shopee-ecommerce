@@ -1,10 +1,10 @@
-import productTypes from "./products.types";
+import productTypes from './products.types';
 
 const initialState = {
   listProducts: [],
   detailProduct: null,
   total: 0,
-  isLoading: true,
+  isLoading: true
 };
 
 const productReducer = (state = initialState, action) => {
@@ -13,23 +13,23 @@ const productReducer = (state = initialState, action) => {
       return {
         ...state,
         detailProduct: null,
-        listProducts: action.payload,
+        listProducts: action.payload
       };
-    case productTypes.SET_DETAIL_PRODUCT: 
+    case productTypes.SET_DETAIL_PRODUCT:
       return {
         ...state,
         listProducts: [],
-        detailProduct: action.payload,
+        detailProduct: action.payload
       };
     case productTypes.SET_PRODUCT_TOTAL:
       return {
         ...state,
-        total: action.payload,
+        total: action.payload
       };
     case productTypes.SET_LOADING:
       return {
         ...state,
-        isLoading: action.payload,
+        isLoading: action.payload
       };
     default:
       return state;
