@@ -43,6 +43,7 @@ const CartPageContainer = props => {
   };
 
   const handleBlur = (id, pro_quantity) => {
+   
     dispatch(handleQuantity(id, Number(pro_quantity)));
   };
 

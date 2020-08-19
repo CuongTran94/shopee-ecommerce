@@ -9,15 +9,15 @@ import { fetchDetailProduct } from '../../redux/Products/products.actions';
 
 import { fetchCart } from '../../redux/Cart/cart.actions';
 
-const DetailPageContainer = (props) => {
+const DetailPageContainer = props => {
   const {
     match: {
-      params: { slug },
-    },
+      params: { slug }
+    }
   } = props;
-  const product = useSelector((state) => state.product.detailProduct) || {};
-  const currentUser = useSelector((state) => state.user.currentUser) || {};
-  const cart = useSelector((state) => state.cart);
+  const product = useSelector(state => state.product.detailProduct) || {};
+  const currentUser = useSelector(state => state.user.currentUser) || {};
+  const cart = useSelector(state => state.cart);
   const dispatch = useDispatch();
 
   useEffect(() => {

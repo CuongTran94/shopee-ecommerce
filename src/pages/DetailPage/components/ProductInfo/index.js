@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { Row, Col, Typography, Button, Input, Divider, Modal } from "antd";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Row, Col, Typography, Button, Input, Divider, Modal } from 'antd';
 import {
   StarFilled,
   MinusOutlined,
@@ -8,15 +8,23 @@ import {
   ShoppingCartOutlined,
   HeartOutlined,
   CheckCircleTwoTone
-} from "@ant-design/icons";
-import "./styles.scss";
-import { addToCart } from "../../../../redux/Cart/cart.actions";
+} from '@ant-design/icons';
+import './styles.scss';
+import { addToCart } from '../../../../redux/Cart/cart.actions';
 
 const { Title } = Typography;
 
-const ProductInfo = (props) => {
+const ProductInfo = props => {
   const history = useHistory();
-  const { pro_name, pro_price, pro_avatar, id, dispatch, currentUser } = props;
+  const {
+    pro_name,
+    pro_price,
+    inventory,
+    pro_avatar,
+    id,
+    dispatch,
+    currentUser
+  } = props;
 
   const [pro_quantity, setPro_quantity] = useState(1);
   const handleIncrement = () => {
@@ -35,7 +43,7 @@ const ProductInfo = (props) => {
     setPro_quantity(pro_quantity - 1);
   };
 
-  const handleOnChange = (event) => {
+  const handleOnChange = event => {
     const quantity = event.target.value;
     if (quantity > 100) {
       setPro_quantity(100);
@@ -48,9 +56,9 @@ const ProductInfo = (props) => {
     setPro_quantity(quantity);
   };
 
-  const handleAddToCart = (cart) => {
+  const handleAddToCart = cart => {
     if (!currentUser) {
-      history.push("/login");
+      history.push('/login');
       return;
     }
     messageAddCart();
@@ -70,7 +78,7 @@ const ProductInfo = (props) => {
     setTimeout(() => {
       modal.destroy();
     }, 2000);
-  }
+  };
 
   return (
     <div className="detail-product-info">
@@ -217,7 +225,8 @@ const ProductInfo = (props) => {
                         pro_price,
                         pro_avatar,
                         pro_quantity,
-                        userID: currentUser.id,
+                        pro_inventory: inventory,
+                        userID: currentUser.id
                       });
                     }}
                     icon={<ShoppingCartOutlined />}

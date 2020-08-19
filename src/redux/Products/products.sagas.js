@@ -1,17 +1,19 @@
+import { takeLatest, all, call, put, takeEvery } from 'redux-saga/effects';
 import {
   setProducts,
   setTotalProducts,
   setLoadingProduct,
   setProductDetail,
-} from "./products.actions";
-import productTypes from "./products.types";
+  setProductQuantity
+} from './products.actions';
+import productTypes from './products.types';
 import {
   handleFetchProduct,
   getTotalProduct,
   handlePaginateProduct,
   handleFetchDetailProduct,
-} from "../../services/products";
-import { takeLatest, all, call, put } from "redux-saga/effects";
+  handleFetchProductQuantity
+} from '../../services/products';
 
 export function* getProducts() {
   try {
@@ -45,7 +47,7 @@ export function* fetchPaginateProduct({ payload: { snapshot, page, limit } }) {
     const products = yield call(handlePaginateProduct, {
       snapshot,
       page,
-      limit,
+      limit
     });
     yield put(setProducts(products));
     yield put(setLoadingProduct(false));
@@ -76,6 +78,6 @@ export default function* productSagas() {
     call(onFetchProducts),
     call(onSetTotalProduct),
     call(onFetchPaginateProduct),
-    call(onFetchProductDetail),
+    call(onFetchProductDetail)
   ]);
 }
