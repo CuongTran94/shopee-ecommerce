@@ -43,6 +43,11 @@ const CartPageContainer = props => {
   };
 
   const handleBlur = (id, pro_quantity) => {
+    if (pro_quantity > 100) {
+      dispatch(handleQuantity(id, 100));
+      alert('san pham khong vuot qua 100')
+      return;
+    }
     dispatch(handleQuantity(id, Number(pro_quantity)));
   };
 

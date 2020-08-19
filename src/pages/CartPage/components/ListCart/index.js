@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from "react";
-import PropTypes from "prop-types";
-import { Table, Button, Input, Modal } from "antd";
-import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
-import "./styles.scss";
-import { Link } from "react-router-dom";
-import { getPrice } from "../../../../utils/cart";
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { Table, Button, Input, Modal } from 'antd';
+import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
+import './styles.scss';
+import { Link } from 'react-router-dom';
+import { getPrice } from '../../../../utils/cart';
 
 const columns = [
   {
@@ -123,7 +123,7 @@ const ListCart = props => {
         }
       },
       total: getPrice(product.pro_price, product.pro_quantity),
-      delete: () => confirmDelete(product.pro_id, product.pro_name),
+      delete: () => confirmDelete(product.pro_id, product.pro_name)
     };
   });
 
