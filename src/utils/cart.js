@@ -16,3 +16,13 @@ export const getTotalPrice = (products = []) => {
 export const emptyObject = obj => {
   return Object.keys(obj).length === 0 && obj.constructor === Object;
 };
+
+export const truncateString = (string, maxLength = 30) => {
+  if (!string) return null;
+  if (string.length <= maxLength) return string;
+  return `${string.substring(0, maxLength)}...`;
+};
+
+export const getTotalQuantity = (products = []) => {
+  return products.reduce((acc, curr) => acc + curr.pro_quantity, 0);
+};

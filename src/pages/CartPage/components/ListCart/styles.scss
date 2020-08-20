@@ -12,8 +12,8 @@
       color: #333;
 
       &::before {
-        content: "";
-        background: url("../../../../assets/images/free-icon.png") no-repeat;
+        content: '';
+        background: url('../../../../assets/images/free-icon.png') no-repeat;
         background-size: contain;
         width: 25px;
         height: 15px;

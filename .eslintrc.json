@@ -15,6 +15,9 @@
     "react/self-closing-comp": "off",
     "react/jsx-closing-tag-location": "warn",
     "import/no-extraneous-dependencies": "off",
-    "react/jsx-one-expression-per-line": "off"
+    "react/jsx-one-expression-per-line": "off",
+    "no-shadow": "off",
+    "react/require-default-props": "off",
+    "react/forbid-prop-types": "off"
   }
 }
