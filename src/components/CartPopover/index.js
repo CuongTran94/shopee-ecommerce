@@ -18,7 +18,7 @@ const CartPopover = props => {
     if (currentUser.id !== undefined) {
       fetchCart(currentUser.id);
     }
-  }, [currentUser, products]);
+  }, [currentUser]);
 
   const data = products.map(product => {
     return {
