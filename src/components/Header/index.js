@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Row, Col, Menu, Input, Tooltip, Popover, Badge } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchCart } from '../../redux/Cart/cart.actions';
 import logo from '../../assets/images/shopee-logo.png';
-import cart from '../../assets/images/cart.png';
+import cartLogo from '../../assets/images/cart.png';
 import './styles.scss';
 import { logoutUser } from '../../redux/User/user.actions';
 import CartPopover from '../CartPopover';
@@ -17,10 +17,9 @@ const content = <CartPopover />;
 
 const Header = () => {
   const currentUser = useSelector(state => state.user.currentUser) || {};
-  const products = useSelector(state => state.cart.products);
+  const cart = useSelector(state => state.cart);
   const dispatch = useDispatch();
-  const quantity = getTotalQuantity(products);
-
+  const quantity = getTotalQuantity(cart.products);
   useEffect(() => {
     if (currentUser.id !== undefined) {
       dispatch(fetchCart(currentUser.id));
@@ -120,7 +119,7 @@ const Header = () => {
                   content={content}
                   trigger="hover"
                 >
-                  <img src={cart} alt="cart" className="header-cart" />
+                  <img src={cartLogo} alt="cart" className="header-cart" />
                 </Popover>
               </Badge>
             </div>
