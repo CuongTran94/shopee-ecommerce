@@ -1,4 +1,5 @@
 import React from 'react';
+import { truncateString, sepratePriceNumber } from '../../utils/cart';
 import {
   Price,
   ActionCointaner,
@@ -6,7 +7,7 @@ import {
   Span,
   Image
 } from './styles/ComponentCart';
-import { truncateString } from '../../utils/cart';
+
 
 const getColumns = () => {
   const columns = [
@@ -29,10 +30,9 @@ const getColumns = () => {
       dataIndex: 'action',
       // eslint-disable-next-line react/prop-types
       render: ({ price, quantity, onDelete }) => (
-       
         <ActionCointaner>
           <Price>
-            ₫{price} x {quantity}
+            ₫{sepratePriceNumber(price)} x {quantity}
           </Price>
           <Delete onClick={onDelete}>Xóa</Delete>
         </ActionCointaner>

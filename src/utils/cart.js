@@ -26,3 +26,7 @@ export const truncateString = (string, maxLength = 30) => {
 export const getTotalQuantity = (products = []) => {
   return products.reduce((acc, curr) => acc + curr.pro_quantity, 0);
 };
+
+export const sepratePriceNumber = price => {
+  return price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, '.');
+};
