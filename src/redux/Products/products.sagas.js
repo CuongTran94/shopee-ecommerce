@@ -4,7 +4,7 @@ import {
   setTotalProducts,
   setLoadingProduct,
   setProductDetail,
-  setProductQuantity
+  searchProduct
 } from './products.actions';
 import productTypes from './products.types';
 import {
@@ -12,7 +12,7 @@ import {
   getTotalProduct,
   handlePaginateProduct,
   handleFetchDetailProduct,
-  handleFetchProductQuantity
+  handleSearchProductByName
 } from '../../services/products';
 
 export function* getProducts() {
@@ -27,6 +27,19 @@ export function* getProducts() {
 
 export function* onFetchProducts() {
   yield takeLatest(productTypes.FETCH_PRODUCTS, getProducts);
+}
+
+export function* handleSearchProduct({ name }) {
+  try {
+    const filterProducts = yield handleSearchProductByName(name);
+    yield put(setProducts(filterProducts));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function* onSearchProducts() {
+  yield takeLatest(productTypes.SEARCH_PRODUCT, handleSearchProduct);
 }
 
 export function* getTotal() {
@@ -78,6 +91,7 @@ export default function* productSagas() {
     call(onFetchProducts),
     call(onSetTotalProduct),
     call(onFetchPaginateProduct),
-    call(onFetchProductDetail)
+    call(onFetchProductDetail),
+    call(onSearchProducts)
   ]);
 }

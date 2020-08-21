@@ -53,3 +53,10 @@ export const setLoadingProduct = flag => {
     payload: flag
   };
 };
+
+export const searchProduct = name => {
+  return {
+    type: productTypes.SEARCH_PRODUCT,
+    name
+  };
+};
