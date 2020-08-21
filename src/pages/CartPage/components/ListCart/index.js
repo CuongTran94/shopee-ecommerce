@@ -4,7 +4,7 @@ import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import ConfirmMessage from '../../../../components/ConfirmMessage';
 import './styles.scss';
-import { getPrice } from '../../../../utils/cart';
+import { getPrice, sepratePriceNumber } from '../../../../utils/cart';
 import {
   DELETE_MESSAGE,
   INVENTORY_NOT_ENOUGH_MESSAGE
@@ -83,13 +83,16 @@ const ListCart = props => {
   }, [props]);
 
   const newData = products.map(product => {
+    const totalPrice = sepratePriceNumber(
+      getPrice(product.pro_price, product.pro_quantity)
+    );
     return {
       key: product.pro_id,
       pro: {
         text: product.pro_name,
         avatar: product.pro_avatar
       },
-      price: product.pro_price,
+      price: sepratePriceNumber(product.pro_price),
       quantity: {
         value: productQuantity[product.pro_id] || 0,
         onDecrement: () => onDecrement(product.pro_id),
@@ -114,7 +117,7 @@ const ListCart = props => {
           onBlur(product.pro_id, productQuantity[product.pro_id]);
         }
       },
-      total: getPrice(product.pro_price, product.pro_quantity),
+      total: totalPrice,
       delete: () =>
         ConfirmMessage(
           product.pro_id,

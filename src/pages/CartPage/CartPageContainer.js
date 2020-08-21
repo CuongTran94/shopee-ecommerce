@@ -43,7 +43,6 @@ const CartPageContainer = props => {
   };
 
   const handleBlur = (id, pro_quantity) => {
-   
     dispatch(handleQuantity(id, Number(pro_quantity)));
   };
 
@@ -61,7 +60,7 @@ const CartPageContainer = props => {
         onDelete={handleDelete}
         cart={cart}
       />
-      <CartTotal handleCheckout={handleCheckout} />
+      <CartTotal products={cart.products} handleCheckout={handleCheckout} />
     </div>
   );
 };

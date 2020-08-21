@@ -2,10 +2,12 @@ import React from 'react';
 import { SketchOutlined, DollarCircleOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { Checkbox, Button } from 'antd';
+import { getTotalPrice, sepratePriceNumber } from '../../../../utils/cart';
 import './styles.scss';
 
 const CartTotal = props => {
-  const { handleCheckout } = props;
+  const { handleCheckout, products } = props;
+  const totalPrice = sepratePriceNumber(getTotalPrice(products));
   return (
     <div className="detail-cart-total">
       <div className="container">
@@ -36,7 +38,7 @@ const CartTotal = props => {
             <Checkbox className="all-text"> Chọn tất cả (1)</Checkbox>
             <div className="detail-cart-summary">
               <span>Tổng tiền hàng (1 Sản phẩm):</span>
-              <span className="detail-cart-summary__total">₫1.800.000</span>
+              <span className="detail-cart-summary__total">₫{totalPrice}</span>
               <Link to="/checkout">
                 <Button
                   onClick={handleCheckout}

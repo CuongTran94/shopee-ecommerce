@@ -82,7 +82,19 @@ export const handleFetchDetailProduct = async slug => {
   }
 };
 
-export const handleFetchProductQuantity = id => {
-  const docRef = firestore.collection('products').doc(id);
-  return docRef.get().then(res => res.data());
+export const handleSearchProductByName = (name = '') => {
+  return new Promise((resolve, reject) => {
+    firestore
+      .collection('products')
+      .orderBy('pro_name')
+      .startAt(name)
+      .endAt(`${name.toLocaleLowerCase}\uf8ff`)
+      .get()
+      .then(product => {
+        resolve(product.docs);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
 };

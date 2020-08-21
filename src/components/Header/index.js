@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col, Menu, Input, Tooltip, Popover, Badge } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { fetchCart } from '../../redux/Cart/cart.actions';
 import logo from '../../assets/images/shopee-logo.png';
 import cartLogo from '../../assets/images/cart.png';
@@ -15,8 +15,9 @@ const { Search } = Input;
 
 const content = <CartPopover />;
 
-const Header = () => {
+const Header = props => {
   const currentUser = useSelector(state => state.user.currentUser) || {};
+  const history = useHistory();
   const cart = useSelector(state => state.cart);
   const dispatch = useDispatch();
   const quantity = getTotalQuantity(cart.products);
@@ -107,7 +108,9 @@ const Header = () => {
           <Col md={{ span: 16 }}>
             <Search
               placeholder="tìm sản phẩm, thương hiêu, và tên shop"
-              onSearch={value => console.log(value)}
+              onSearch={value => {
+                history.push(`/search?keyword=${value}`);
+              }}
               className="header-search"
             />
           </Col>
