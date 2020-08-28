@@ -34,7 +34,7 @@ const Header = props => {
   const renderTooltip = () => {
     return (
       <div className="ant-tooltip-wrap">
-        <Link to="/" className="ant-tooltip-item">
+        <Link to="/user/profile" className="ant-tooltip-item">
           Tài khoản của tôi
         </Link>
         <Link to="/" className="ant-tooltip-item">

@@ -9,7 +9,7 @@ import {
 } from '../../redux/Order/order.actions';
 
 const CheckoutPageContainer = props => {
-  const order = useSelector(state => state.order) || {};
+  const order = useSelector(state => state.order.orderUser) || {};
   const currentUser = useSelector(state => state.user.currentUser) || {};
   const dispatch = useDispatch();
   useEffect(() => {
