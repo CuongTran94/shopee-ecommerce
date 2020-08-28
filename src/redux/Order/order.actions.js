@@ -42,3 +42,18 @@ export const addProductsToOrder = (products, userID) => {
     userID
   };
 };
+
+export const fetchOrderManagement = userID => {
+  return {
+    type: orderTypes.FETCH_ORDERS_MANAGEMENT,
+    userID
+  };
+};
+
+export const setOrderManagement = orders => {
+  
+  return {
+    type: orderTypes.SET_ORDERS_MANAGEMENT,
+    orders
+  };
+};

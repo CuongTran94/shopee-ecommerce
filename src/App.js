@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
 import {
   BrowserRouter,
   Route,
@@ -8,11 +10,11 @@ import {
 } from 'react-router-dom';
 import './App.scss';
 import LoginPageContainer from './pages/LoginPage/LoginPageContainer';
+
 import Header from './components/Header';
 import Footer from './components/Footer';
 import HomePageContainer from './pages/HomePage/HomePageContainer';
 import DailyDiscoverContainer from './pages/DailyDiscover/DailyDiscoverContainer';
-import { useSelector, useDispatch } from 'react-redux';
 import { checkUserLogin } from './redux/User/user.actions';
 import RegisterPageContainer from './pages/RegisterPage/RegisterPageContainer';
 import DetailPageContainer from './pages/DetailPage/DetailPageContainer';
@@ -20,6 +22,7 @@ import CartPageContainer from './pages/CartPage/CartPageContainer';
 import CheckoutPageContainer from './pages/CheckoutPage/CheckoutPageContainer';
 import SearchPage from './pages/SearchPage';
 import ProtectedRoute from './components/ProtectedRoute';
+import User from './pages/UserPage';
 
 const Main = withRouter(({ location }) => {
   const currentUser = useSelector(state => state.user.currentUser);
@@ -49,6 +52,9 @@ const Main = withRouter(({ location }) => {
           component={CartPageContainer}
         />
         <Route path="/daily_discover" component={DailyDiscoverContainer} />
+        <Route path="/user" component={User}>
+          
+        </Route>
         <Route path="/search" component={SearchPage} />
         <Route path="/:slug" component={DetailPageContainer} />
       </Switch>

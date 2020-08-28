@@ -7,9 +7,13 @@ import {
   takeEvery,
   take
 } from 'redux-saga/effects';
-import { setOrder } from './order.actions';
+import { setOrder, setOrderManagement } from './order.actions';
 import { fetchOrderByUserID } from '../../services/carts';
-import { updateOrderFirebase, addToOrderFirebase } from '../../services/orders';
+import {
+  updateOrderFirebase,
+  addToOrderFirebase,
+  fetchOrderManagement
+} from '../../services/orders';
 import orderTypes from './order.types';
 import { emptyObject } from '../../utils/cart';
 
@@ -30,7 +34,7 @@ export function* watchFecthOrder() {
 }
 
 export function* handleUpdateInfor() {
-  const order = yield select(state => state.order);
+  const order = yield select(state => state.order.orderUser);
 
   try {
     const orderFromServer = yield call(fetchOrderByUserID, order.userID);
@@ -45,7 +49,7 @@ export function* watchUpdateInfor() {
 }
 
 export function* handleUpdatePaymentMethod() {
-  const order = yield select(state => state.order);
+  const order = yield select(state => state.order.orderUser);
 
   try {
     const orderFromServer = yield call(fetchOrderByUserID, order.userID);
@@ -60,7 +64,7 @@ export function* watchUpdatePaymentMethod() {
 }
 
 export function* handleCheckoutSuccess() {
-  const order = yield select(state => state.order);
+  const order = yield select(state => state.order.orderUser);
 
   try {
     const orderFromServer = yield call(fetchOrderByUserID, order.userID);
@@ -76,7 +80,7 @@ export function* watchCheckoutSuccess() {
 
 export function* handleAddToOrder(action) {
   try {
-    const orderFromState = yield select(state => state.order);
+    const orderFromState = yield select(state => state.order.orderUser);
     const orderFromServer = yield call(fetchOrderByUserID, action.userID);
 
     if (emptyObject(orderFromServer)) {
@@ -93,12 +97,31 @@ export function* watchAddToOrder() {
   yield takeLatest(orderTypes.ADD_PRODUCTS_TO_ORDER, handleAddToOrder);
 }
 
+export function* handleSetOrderManagement(action) {
+  const { userID } = action;
+
+  try {
+    const orders = yield call(fetchOrderManagement, userID);
+    yield put(setOrderManagement(orders));
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export function* watchFecthOrderManagement() {
+  yield takeLatest(
+    orderTypes.FETCH_ORDERS_MANAGEMENT,
+    handleSetOrderManagement
+  );
+}
+
 export default function* orderSaga() {
   yield all([
     call(watchFecthOrder),
     call(watchUpdateInfor),
     call(watchUpdatePaymentMethod),
     call(watchCheckoutSuccess),
-    call(watchAddToOrder)
+    call(watchAddToOrder),
+    call(watchFecthOrderManagement)
   ]);
 }

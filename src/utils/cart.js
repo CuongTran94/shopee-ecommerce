@@ -1,3 +1,5 @@
+import { orderStatus, orderStatusString } from '../constants/orderStatus';
+
 export const getPrice = (price, qty) => {
   return price * qty;
 };
@@ -29,4 +31,17 @@ export const getTotalQuantity = (products = []) => {
 
 export const sepratePriceNumber = price => {
   return price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, '.');
+};
+
+export const getStatus = (status = 2) => {
+  switch (status) {
+    case orderStatus.PROGRESSING:
+      return orderStatusString.PROGRESSING_STRING;
+    case orderStatus.DELIVERING:
+      return orderStatusString.DELIVERING_STRING;
+    case orderStatus.DELEVERED:
+      return orderStatusString.DELIVERED_STRING;
+    default:
+      return orderStatusString.PROGRESSING_STRING;
+  }
 };

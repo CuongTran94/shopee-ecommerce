@@ -18,6 +18,7 @@
     "react/jsx-one-expression-per-line": "off",
     "no-shadow": "off",
     "react/require-default-props": "off",
-    "react/forbid-prop-types": "off"
+    "react/forbid-prop-types": "off",
+    "react/jsx-wrap-multilines": "off"
   }
 }

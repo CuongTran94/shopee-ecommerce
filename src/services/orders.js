@@ -31,3 +31,17 @@ export const updateOrderFirebase = (order, id) => {
 export const addToOrderFirebase = order => {
   firestore.collection('checkouts').add(order);
 };
+
+export const fetchOrderManagement = async userID => {
+  try {
+    const orderRef = await firestore
+      .collection('checkouts')
+      .where('userID', '==', userID)
+      .where('status', '==', 2)
+      .get();
+
+    return orderRef.docs.map(doc => doc.data());
+  } catch (err) {
+    throw err;
+  }
+};

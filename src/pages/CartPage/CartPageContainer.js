@@ -20,7 +20,7 @@ const CartPageContainer = props => {
   const currentUser = useSelector(state => state.user.currentUser) || {};
 
   const cart = useSelector(state => state.cart) || {};
-  const order = useSelector(state => state.order) || {};
+  const order = useSelector(state => state.order.orderUser) || {};
 
   const dispatch = useDispatch();
   useEffect(() => {

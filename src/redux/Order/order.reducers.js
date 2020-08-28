@@ -1,49 +1,76 @@
 import orderTypes from './order.types';
 
 const initState = {
-  id: '',
-  address: '',
-  city: '',
-  email: '',
-  gender: 1,
-  name: '',
-  note: '',
-  phone_number: '',
-  status: 0,
-  shipping: 1,
-  products: [],
-  userID: ''
+  orderUser: {
+    id: '',
+    address: '',
+    city: '',
+    email: '',
+    gender: 1,
+    name: '',
+    note: '',
+    phone_number: '',
+    status: 0,
+    shipping: 1,
+    products: [],
+    userID: ''
+  },
+  orderManagements: []
 };
 
 const orderReducer = (state = initState, action) => {
   switch (action.type) {
     case orderTypes.SET_ORDER: {
-      return action.order;
+      return {
+        ...state,
+        orderUser: action.order
+      };
     }
+    case orderTypes.SET_ORDERS_MANAGEMENT:
+      return {
+        ...state,
+        orderManagements: action.orders
+      };
     case orderTypes.ADD_PRODUCTS_TO_ORDER: {
       return {
-        products: action.products,
-        userID: action.userID,
-        status: 1,
-        payment_method: 'cod'
+        ...state,
+        orderUser: {
+          products: action.products,
+          userID: action.userID,
+          status: 1,
+          payment_method: 'cod'
+        },
+       
       };
     }
     case orderTypes.ADD_INFOR_ORDER: {
       return {
         ...state,
-        ...action.orderInfo
+        orderUser: {
+          ...state.orderUser,
+          ...action.orderInfo
+        },
+        orderManagements: []
       };
     }
     case orderTypes.SET_PAYMENT_METHOD: {
       return {
         ...state,
-        ...action.paymentMethod
+        orderUser: {
+          ...state.orderUser,
+          ...action.paymentMethod
+        },
+        orderManagements: []
       };
     }
     case orderTypes.CHECK_OUT_SUCCESS: {
       return {
         ...state,
-        ...action.status
+        orderUser: {
+          ...state.orderUser,
+          ...action.status
+        },
+        orderManagements: []
       };
     }
     default:
