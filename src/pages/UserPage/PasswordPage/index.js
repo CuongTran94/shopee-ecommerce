@@ -1,22 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Form, Layout } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
 import StyledButton from '../../../components/Button';
 import { StyledItem, StyledInputPassword } from '../components';
+import { changePassword, logoutUser } from '../../../redux/User/user.actions';
+import { handleSuccess, handleError } from './Modal';
+import { ruleRequired, matchRule } from './Rule';
+import { layout, tailLayout } from './Layout';
 
 const { Header, Content } = Layout;
 
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 16 }
-};
-const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 }
-};
-
 const PasswordChanging = () => {
+  const dispatch = useDispatch();
+  const isLoading = useSelector(state => state.user.isLoading);
+  const error = useSelector(state => state.user.error);
+  const success = useSelector(state => state.user.success) || false;
   const onFinish = values => {
-    console.log('Success:', values);
+    dispatch(changePassword(values.newPassword, values.currentPassword));
   };
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
+  };
+
+  useEffect(() => {
+    if (error) {
+      handleError(error);
+      return;
+    }
+    if (success) {
+      handleSuccess(handleLogout);
+    }
+  }, [error, success]);
 
   return (
     <Layout>
@@ -27,28 +42,31 @@ const PasswordChanging = () => {
         <Form {...layout} name="basic" onFinish={onFinish}>
           <StyledItem
             label="Mật khẩu hiện tại"
-            name="current-password"
-            rules={[{ required: true, message: 'Please input your password!' }]}
+            name="currentPassword"
+            rules={ruleRequired}
+            hasFeedback
           >
             <StyledInputPassword />
           </StyledItem>
           <StyledItem
             label="Mật khẩu mới"
-            name="new-password"
-            rules={[{ required: true, message: 'Please input your password!' }]}
+            name="newPassword"
+            rules={ruleRequired}
           >
             <StyledInputPassword />
           </StyledItem>
           <StyledItem
             label="Xác nhận mật khẩu"
-            name="confirm-password"
-            rules={[{ required: true, message: 'Please input your password!' }]}
+            name="confirmPassword"
+            dependencies={['newPassword']}
+            hasFeedback
+            rules={matchRule}
           >
             <StyledInputPassword />
           </StyledItem>
 
           <StyledItem {...tailLayout}>
-            <StyledButton type="primary" htmlType="submit">
+            <StyledButton loading={isLoading} type="primary" htmlType="submit">
               Submit
             </StyledButton>
           </StyledItem>
