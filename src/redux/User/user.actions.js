@@ -92,3 +92,31 @@ export const changePasswordFailure = error => {
     error
   };
 };
+
+export const updateUserInfo = (userInfo, userID) => {
+  return {
+    type: userTypes.UPDATE_USER_INFO,
+    userInfo,
+    userID
+  };
+};
+
+export const updateUserInfoPending = () => {
+  return {
+    type: userTypes.UPDATE_USER_INFO_PENDING
+  };
+};
+
+export const updateUserInfoSuccess = newUser => {
+  return {
+    type: userTypes.UPDATE_USER_INFO_SUCCESS,
+    newUser
+  };
+};
+
+export const updateUserInfoFailure = error => {
+  return {
+    type: userTypes.UPDATE_USER_INFO_FAILURE,
+    error
+  };
+};

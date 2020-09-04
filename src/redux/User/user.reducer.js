@@ -41,6 +41,7 @@ const userReducer = (state = initialState, action) => {
         ...state,
         authErr: null
       };
+    case userTypes.UPDATE_USER_INFO_PENDING:
     case userTypes.CHANGE_PASSWORD_PENDING:
       return {
         ...state,
@@ -55,6 +56,15 @@ const userReducer = (state = initialState, action) => {
         error: '',
         success: true
       };
+    case userTypes.UPDATE_USER_INFO_SUCCESS:
+      return {
+        ...state,
+        currentUser: action.newUser,
+        isLoading: false,
+        error: '',
+        success: true
+      };
+    case userTypes.UPDATE_USER_INFO_FAILURE:
     case userTypes.CHANGE_PASSWORD_FAILURE:
       return {
         ...state,
@@ -62,6 +72,7 @@ const userReducer = (state = initialState, action) => {
         error: action.error,
         success: false
       };
+
     default:
       return state;
   }

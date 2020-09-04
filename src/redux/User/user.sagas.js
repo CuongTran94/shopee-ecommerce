@@ -1,4 +1,4 @@
-import { takeLatest, call, all, put } from 'redux-saga/effects';
+import { takeLatest, call, all, put, select } from 'redux-saga/effects';
 import { auth } from '../../constants/config';
 import {
   clearCurrentUser,
@@ -6,10 +6,12 @@ import {
   loginFailed,
   setLoading,
   signUpFail,
-  changePassword,
   changePasswordPending,
   changePasswordSuccess,
-  changePasswordFailure
+  changePasswordFailure,
+  updateUserInfoPending,
+  updateUserInfoSuccess,
+  updateUserInfoFailure
 } from './user.actions';
 import userTypes from './user.types';
 import {
@@ -17,7 +19,8 @@ import {
   signIn,
   getUserProfile,
   getCurrentUser,
-  changePasswordFirebase
+  changePasswordFirebase,
+  updateUserProfile
 } from '../../services/user';
 
 // Sign out user
@@ -70,6 +73,7 @@ export function* signInUser({ payload: { email, password } }) {
       data: {}
     });
     const userCurrent = yield userRef.get();
+
     yield put(
       setCurrentUser({
         id: userCurrent.id,
@@ -124,12 +128,38 @@ export function* watchChangePassword() {
   yield takeLatest(userTypes.CHANGE_PASSWORD, handleUpdatePassword);
 }
 
+export function* handleUpdateUserInfo(action) {
+  yield put(updateUserInfoPending());
+  const { userInfo, userID } = action;
+  const currentUser = yield select(state => state.user.currentUser);
+  const newUser = {
+    ...currentUser,
+    ...userInfo
+  };
+  const newUserUpdateState = {
+    ...newUser,
+    id: userID
+  };
+  console.log('vc: ', newUserUpdateState);
+  try {
+    yield call(() => updateUserProfile(newUser, userID));
+    yield put(updateUserInfoSuccess(newUserUpdateState));
+  } catch (error) {
+    yield put(updateUserInfoFailure(error));
+  }
+}
+
+export function* watchUpdateUserInfo() {
+  yield takeLatest(userTypes.UPDATE_USER_INFO, handleUpdateUserInfo);
+}
+
 export default function* userSagas() {
   yield all([
     call(onSignInUser),
     call(onSignOutUser),
     call(onSignUpUser),
     call(onIsUserAuth),
-    call(watchChangePassword)
+    call(watchChangePassword),
+    call(watchUpdateUserInfo)
   ]);
 }
