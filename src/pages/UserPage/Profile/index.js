@@ -1,21 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-  Form,
-  Input,
-  Button,
-  Radio,
-  Typography,
-  DatePicker,
-  Layout
-} from 'antd';
-import {useSelector, useDispatch} from "react-redux";
+import { Form, Input, Radio, Typography, DatePicker, Layout } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+import moment from 'moment';
 
 import StyleButton from '../../../components/Button/index';
 import { StyledItem, StyledLayout } from '../components';
+import { updateUserInfo } from '../../../redux/User/user.actions';
 
 const { Header, Content } = Layout;
-
+const { TextArea } = Input;
 const { Title } = Typography;
 
 const layout = {
@@ -29,12 +23,29 @@ const tailLayout = {
 
 const Container = styled.div``;
 
+const dateFormat = 'DD/MM/YYYY';
+
 const ProfilePage = () => {
-
-
+  const user = useSelector(state => state.user.currentUser);
+  const isLoading = useSelector(state => state.user.isLoading);
+  const {
+    username,
+    fullName,
+    gender,
+    phoneNumber,
+    email,
+    address,
+    dateOfBirth,
+    id
+  } = user;
+  const dispatch = useDispatch();
 
   const onFinish = values => {
-    console.log(values);
+    const infoUser = {
+      ...values,
+      dateOfBirth: new Date(values.dateOfBirth)
+    };
+    dispatch(updateUserInfo(infoUser, id));
   };
 
   return (
@@ -45,25 +56,37 @@ const ProfilePage = () => {
         </Header>
 
         <Content>
-          <Form onFinish={onFinish} {...layout} name="form-shipping">
-            <StyledItem label="Tên đăng nhập">
-              <span>nhaphan0073</span>
+          <Form
+            initialValues={{
+              username,
+              fullName,
+              gender,
+              phoneNumber,
+              email,
+              address,
+              dateOfBirth: moment(new Date(dateOfBirth.seconds * 1000))
+            }}
+            onFinish={onFinish}
+            {...layout}
+            name="form-shipping"
+          >
+            <StyledItem name="username" label="Tên đăng nhập">
+              <Input style={{ width: ' 300px' }} disabled />
             </StyledItem>
 
-            <StyledItem
-              label="Tên"
-              name="name"
-              rules={[
-                { required: true, message: 'Please input your username!' }
-              ]}
-            >
+            <StyledItem label="Tên" name="fullName">
               <Input style={{ width: ' 300px' }} />
             </StyledItem>
-            <StyledItem label="Số điện thoại" name="phone_number">
-              <span>0329313111</span>
+
+            <StyledItem label="Số điện thoại" name="phoneNumber" disabled>
+              <Input style={{ width: ' 300px' }} />
             </StyledItem>
             <StyledItem label="Email" name="email">
-              <span>nhaphan0073@gmail.com</span>
+              <Input style={{ width: ' 300px' }} disabled />
+            </StyledItem>
+
+            <StyledItem name="address" label="Địa chỉ">
+              <TextArea style={{ width: '300px' }} />
             </StyledItem>
 
             <StyledItem label="Giới tính" name="gender">
@@ -74,11 +97,14 @@ const ProfilePage = () => {
               </Radio.Group>
             </StyledItem>
 
-            <StyledItem label="Ngày sinh">
-              <DatePicker />
+            <StyledItem name="dateOfBirth" label="Ngày sinh">
+              <DatePicker style={{ width: ' 300px' }} format={dateFormat} />
             </StyledItem>
+
             <StyledItem {...tailLayout}>
-              <StyleButton htmlType="submit">Lưu</StyleButton>
+              <StyleButton loading={isLoading} htmlType="submit">
+                Lưu
+              </StyleButton>
             </StyledItem>
           </Form>
         </Content>

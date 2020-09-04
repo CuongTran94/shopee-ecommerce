@@ -1,5 +1,4 @@
 import { firestore, auth, rawFirebase } from '../constants/config';
-import { Alert } from 'antd';
 
 export const getCurrentUser = async () => {
   return new Promise((resolve, reject) => {
@@ -13,7 +12,6 @@ export const getCurrentUser = async () => {
 export const getUserProfile = async ({ userAuth, data }) => {
   if (!userAuth) return;
   const { uid } = userAuth;
-
   const userRef = await firestore.doc(`users/${uid}`);
   const userCurrent = await userRef.get();
 
@@ -21,6 +19,12 @@ export const getUserProfile = async ({ userAuth, data }) => {
     const { displayName, email, photoURL, phoneNumber } = userAuth;
     const timestamp = new Date();
     const userRoles = ['user'];
+    const moreData = {
+      gender: 'male',
+      dateOfBirth: new Date(),
+      address: 'None',
+      fullName: 'None'
+    };
 
     try {
       await userRef.set({
@@ -30,14 +34,25 @@ export const getUserProfile = async ({ userAuth, data }) => {
         phoneNumber,
         userRoles,
         createdAt: timestamp,
+        ...moreData,
         ...data
       });
     } catch (err) {
       console.log(err);
     }
   }
-
   return userRef;
+};
+
+export const updateUserProfile = (newUser, userID) => {
+  try {
+    return firestore
+      .collection('users')
+      .doc(userID)
+      .set(newUser);
+  } catch (error) {
+    throw error;
+  }
 };
 
 export const signUp = async ({ email, password }) => {
@@ -70,8 +85,11 @@ export const reAuthenticateUser = currentPassword => {
   return user.reauthenticateWithCredential(cred);
 };
 
-export const changePasswordFirebase = async ({newPassword, currentPassword}) => {
- await  reAuthenticateUser(currentPassword)
+export const changePasswordFirebase = async ({
+  newPassword,
+  currentPassword
+}) => {
+  await reAuthenticateUser(currentPassword)
     .then(() => {
       const user = auth.currentUser;
       user
