@@ -71,7 +71,6 @@ export const fetchOrderDetailPending = () => {
 };
 
 export const fetchOrderDetailSuccess = newOrder => {
-  console.log('neworder', newOrder);
   return {
     type: orderTypes.FETCH_ORDER_DETAIL_SUCCESS,
     newOrder

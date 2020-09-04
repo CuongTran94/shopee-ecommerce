@@ -140,7 +140,6 @@ export function* handleUpdateUserInfo(action) {
     ...newUser,
     id: userID
   };
-  console.log('vc: ', newUserUpdateState);
   try {
     yield call(() => updateUserProfile(newUser, userID));
     yield put(updateUserInfoSuccess(newUserUpdateState));
