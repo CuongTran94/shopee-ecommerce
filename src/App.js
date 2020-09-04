@@ -52,11 +52,11 @@ const Main = withRouter(({ location }) => {
           component={CartPageContainer}
         />
         <Route path="/daily_discover" component={DailyDiscoverContainer} />
-        <ProtectedRoute
+        <Route
           path="/user"
           loggedIn={currentUser}
           component={User}
-        ></ProtectedRoute>
+        ></Route>
         <Route path="/search" component={SearchPage} />
         <Route path="/:slug" component={DetailPageContainer} />
       </Switch>

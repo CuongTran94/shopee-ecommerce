@@ -45,3 +45,24 @@ export const fetchOrderManagement = async userID => {
     throw err;
   }
 };
+
+export const handleFetchOrderDetailByID = async orderID => {
+  try {
+    const productRef = await firestore
+      .collection('checkouts')
+      .where('id', '==', orderID)
+      .limit(1)
+      .get();
+    const productDetail = productRef.docs;
+    const data = productDetail[0].data();
+    const newProductDetail = {
+      ...data
+    };
+    if (!productDetail.length) {
+      return {};
+    }
+    return newProductDetail;
+  } catch (err) {
+    throw err;
+  }
+};

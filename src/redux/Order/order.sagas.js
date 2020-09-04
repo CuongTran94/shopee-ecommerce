@@ -1,21 +1,24 @@
-import {
-  takeLatest,
-  all,
-  call,
-  put,
-  select,
-  takeEvery,
-  take
-} from 'redux-saga/effects';
-import { setOrder, setOrderManagement } from './order.actions';
+import { takeLatest, all, call, put, select } from 'redux-saga/effects';
+
+import orderTypes from './order.types';
+import { emptyObject } from '../../utils/cart';
 import { fetchOrderByUserID } from '../../services/carts';
+
+import {
+  setOrder,
+  setOrderManagement,
+  fetchOrderDetail,
+  fetchOrderDetailPending,
+  fetchOrderDetailSuccess,
+  fetchOrderDetailFailure
+} from './order.actions';
+
 import {
   updateOrderFirebase,
   addToOrderFirebase,
-  fetchOrderManagement
+  fetchOrderManagement,
+  handleFetchOrderDetailByID
 } from '../../services/orders';
-import orderTypes from './order.types';
-import { emptyObject } from '../../utils/cart';
 
 export function* handleFetchOrder(action) {
   const { userID } = action;
@@ -115,6 +118,23 @@ export function* watchFecthOrderManagement() {
   );
 }
 
+export function* handleFetchOrderDetail(action) {
+  const { orderID } = action;
+  yield put(fetchOrderDetailPending());
+
+  try {
+    const order = yield call(() => handleFetchOrderDetailByID(orderID));
+  
+    yield put(fetchOrderDetailSuccess(order));
+  } catch (error) {
+    yield put(fetchOrderDetailFailure(error));
+  }
+}
+
+export function* watchFetchOrderDetail() {
+  yield takeLatest(orderTypes.FETCH_ORDER_DETAIL, handleFetchOrderDetail);
+}
+
 export default function* orderSaga() {
   yield all([
     call(watchFecthOrder),
@@ -122,6 +142,7 @@ export default function* orderSaga() {
     call(watchUpdatePaymentMethod),
     call(watchCheckoutSuccess),
     call(watchAddToOrder),
-    call(watchFecthOrderManagement)
+    call(watchFecthOrderManagement),
+    call(watchFetchOrderDetail)
   ]);
 }

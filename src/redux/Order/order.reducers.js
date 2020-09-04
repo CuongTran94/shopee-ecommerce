@@ -39,8 +39,13 @@ const orderReducer = (state = initState, action) => {
           userID: action.userID,
           status: 1,
           payment_method: 'cod'
-        },
-       
+        }
+      };
+    }
+    case orderTypes.FETCH_ORDER_DETAIL_SUCCESS: {
+      return {
+        ...state,
+        orderDetail: action.newOrder
       };
     }
     case orderTypes.ADD_INFOR_ORDER: {

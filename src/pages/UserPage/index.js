@@ -7,6 +7,7 @@ import { UserOutlined, ShoppingCartOutlined } from '@ant-design/icons';
 import ProfilePage from './Profile';
 import PasswordChanging from './PasswordPage';
 import Purchase from './PerchasePage';
+import OrderDetailPage from './OrderDetailPage';
 
 const { Header, Footer, Sider, Content } = Layout;
 const { SubMenu } = Menu;
@@ -86,7 +87,12 @@ const UserPage = ({ match: { url } }) => {
           <Switch>
             <Route path={`${url}/profile`} component={ProfilePage} />
             <Route path={`${url}/password`} component={PasswordChanging} />
-            <Route path={`${url}/purchase`} component={Purchase} />
+            <Route exact path={`${url}/purchase`} component={Purchase} />
+            <Route
+              exact
+              path={`${url}/purchase/:id`}
+              component={OrderDetailPage}
+            />
           </Switch>
         </StyledLayout>
       </StyledLayout>

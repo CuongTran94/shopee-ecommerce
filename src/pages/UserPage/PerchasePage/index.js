@@ -1,6 +1,8 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Table, Space, Layout } from 'antd';
+import { Link } from 'react-router-dom';
+
 import { fetchOrderManagement } from '../../../redux/Order/order.actions';
 import {
   getTotalPrice,
@@ -38,9 +40,11 @@ const columns = [
   {
     title: 'Hành động',
     key: 'action',
-    render: (text, record) => (
+    dataIndex: 'action',
+
+    render: action => (
       <Space size="middle">
-        <a>Chi tiết đơn hàng</a>
+        <Link to={`purchase/${action}`}>Chi tiết đơn hàng</Link>
       </Space>
     )
   }
@@ -54,10 +58,12 @@ const PerchasePage = () => {
   const newData = orders.map(order => {
     const totalPrice = getTotalPrice(order.products);
     return {
+      key: order.id,
       id: order.id,
       date: '20/1/2020',
       status: getStatus(order.status),
-      totalPrice: sepratePriceNumber(totalPrice)
+      totalPrice: sepratePriceNumber(totalPrice),
+      action: order.id
     };
   });
 

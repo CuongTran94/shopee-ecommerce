@@ -51,9 +51,36 @@ export const fetchOrderManagement = userID => {
 };
 
 export const setOrderManagement = orders => {
-  
   return {
     type: orderTypes.SET_ORDERS_MANAGEMENT,
     orders
+  };
+};
+
+export const fetchOrderDetail = orderID => {
+  return {
+    type: orderTypes.FETCH_ORDER_DETAIL,
+    orderID
+  };
+};
+
+export const fetchOrderDetailPending = () => {
+  return {
+    type: orderTypes.FETCH_ORDER_DETAIL_PENDING
+  };
+};
+
+export const fetchOrderDetailSuccess = newOrder => {
+  console.log('neworder', newOrder);
+  return {
+    type: orderTypes.FETCH_ORDER_DETAIL_SUCCESS,
+    newOrder
+  };
+};
+
+export const fetchOrderDetailFailure = error => {
+  return {
+    type: orderTypes.FETCH_ORDER_DETAIL_FAILURE,
+    error
   };
 };
