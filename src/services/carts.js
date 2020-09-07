@@ -49,6 +49,13 @@ export const fetchOrderByUserID = async userID => {
   }
 };
 
+export const deleteCart = async cartID => {
+  await firestore
+  .collection('carts')
+  .doc(cartID)
+  .delete();
+}
+
 export const fetchCartByUserID = async userID => {
   try {
     const cartRef = await firestore

@@ -1,10 +1,11 @@
-import { takeLatest, all, call, put, select } from 'redux-saga/effects';
+import { takeLatest, all, call, put, select, take } from 'redux-saga/effects';
 import { setCart } from './cart.actions';
 import cartTypes from './cart.types';
 import {
   fetchCartByUserID,
   addToCartFirebase,
-  updateCartFirebase
+  updateCartFirebase,
+  deleteCart
 } from '../../services/carts';
 import { emptyObject } from '../../utils/cart';
 
@@ -72,14 +73,25 @@ export function* watchDecreaseQuantity() {
   yield takeLatest(cartTypes.DECREASE_ITEM_QUANTITY, handleChangeQuantity);
 }
 
-
-
 export function* watchIncreaseQuantity() {
   yield takeLatest(cartTypes.INCREASE_ITEM_QUANTITY, handleChangeQuantity);
 }
 
 export function* watchHandleChangeQuantiy() {
   yield takeLatest(cartTypes.CHANGE_ITEM_QUANTITY, handleChangeQuantity);
+}
+
+export function* handleDeleteCart(action) {
+  const { cartID } = action;
+  try {
+    yield call(() => deleteCart(cartID));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function* watchDeleteCart() {
+  yield takeLatest(cartTypes.DELETE_CART, handleDeleteCart);
 }
 
 export default function* cartSagas() {

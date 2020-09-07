@@ -28,6 +28,13 @@ export const deleteItem = id => {
   };
 };
 
+export const deleteCart = id => {
+  return {
+    type: cartTypes.DELETE_CART,
+    id
+  };
+};
+
 export const increaseQuantity = id => {
   return {
     type: cartTypes.INCREASE_ITEM_QUANTITY,
