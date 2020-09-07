@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Row, Col, Typography, Button, Input, Divider, Modal } from 'antd';
+import { emptyObject } from '../../../../utils/cart';
 import {
   StarFilled,
   MinusOutlined,
@@ -57,7 +58,7 @@ const ProductInfo = props => {
   };
 
   const handleAddToCart = cart => {
-    if (!currentUser) {
+    if (emptyObject(currentUser)) {
       history.push('/login');
       return;
     }

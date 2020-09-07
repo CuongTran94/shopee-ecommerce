@@ -9,7 +9,7 @@ import cartLogo from '../../assets/images/cart.png';
 import './styles.scss';
 import { logoutUser } from '../../redux/User/user.actions';
 import CartPopover from '../CartPopover';
-import { getTotalQuantity } from '../../utils/cart';
+import { getTotalQuantity, emptyObject } from '../../utils/cart';
 
 const { Search } = Input;
 
@@ -76,7 +76,7 @@ const Header = props => {
                 <QuestionCircleOutlined className="topbar-ic-que" />
                 <Link to="/#">trợ giúp</Link>
               </Menu.Item>
-              {!currentUser ? (
+              {emptyObject(currentUser) ? (
                 [
                   <Menu.Item key="signup">
                     <Link to="/signup">đăng ký</Link>
