@@ -74,8 +74,6 @@ const UserPage = ({ match: { url } }) => {
               }
             >
               <Menu.Item key="profile">Hồ sơ</Menu.Item>
-              <Menu.Item key="bank">Ngân hàng</Menu.Item>
-              <Menu.Item key="address">Địa chỉ</Menu.Item>
               <Menu.Item key="password">Đổi mật khẩu</Menu.Item>
             </SubMenu>
             <Menu.Item key="purchase" icon={<ShoppingCartOutlined />}>
