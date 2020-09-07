@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import CheckoutStep from './components/Steps';
+import { deleteCart } from '../../redux/Cart/cart.actions';
 import {
   fetchOrder,
   addInforToOrder,
@@ -11,6 +12,8 @@ import {
 const CheckoutPageContainer = props => {
   const order = useSelector(state => state.order.orderUser) || {};
   const currentUser = useSelector(state => state.user.currentUser) || {};
+  const cartID = useSelector(state => state.cart.id);
+
   const dispatch = useDispatch();
   useEffect(() => {
     const { id } = currentUser;
@@ -23,8 +26,10 @@ const CheckoutPageContainer = props => {
     dispatch(addInforToOrder(customerInfo));
   };
 
-  const handleCheckoutSuccess = (status) => {
+  const handleCheckoutSuccess = status => {
     dispatch(setCheckoutSuccess({ status }));
+    console.log(cartID, 'cartID');
+    dispatch(deleteCart(cartID));
   };
 
   return (

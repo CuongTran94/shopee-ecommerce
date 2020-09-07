@@ -28,10 +28,16 @@ export const deleteItem = id => {
   };
 };
 
-export const deleteCart = id => {
+export const deleteCart = cartID => {
   return {
     type: cartTypes.DELETE_CART,
-    id
+    cartID
+  };
+};
+
+export const deleteCartSuccess = () => {
+  return {
+    type: cartTypes.DELETE_CART_SUCCESS
   };
 };
 

@@ -87,6 +87,12 @@ const cartReducer = (state = { products: [], userID: null }, action) => {
       newProduct.pro_quantity = pro_quantity;
       return stateClone;
     }
+    case cartTypes.DELETE_CART: {
+      return {
+        ...state,
+        products: []
+      };
+    }
     default:
       return state;
   }

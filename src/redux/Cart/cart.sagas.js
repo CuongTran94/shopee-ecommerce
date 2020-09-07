@@ -1,5 +1,5 @@
-import { takeLatest, all, call, put, select, take } from 'redux-saga/effects';
-import { setCart } from './cart.actions';
+import { takeLatest, all, call, put, select } from 'redux-saga/effects';
+import { setCart, deleteCartSuccess } from './cart.actions';
 import cartTypes from './cart.types';
 import {
   fetchCartByUserID,
@@ -83,8 +83,10 @@ export function* watchHandleChangeQuantiy() {
 
 export function* handleDeleteCart(action) {
   const { cartID } = action;
+
   try {
     yield call(() => deleteCart(cartID));
+    yield put(deleteCartSuccess());
   } catch (error) {
     console.log(error);
   }
@@ -101,6 +103,7 @@ export default function* cartSagas() {
     call(watchDeleteItem),
     call(watchDecreaseQuantity),
     call(watchIncreaseQuantity),
-    call(watchHandleChangeQuantiy)
+    call(watchHandleChangeQuantiy),
+    call(watchDeleteCart)
   ]);
 }
