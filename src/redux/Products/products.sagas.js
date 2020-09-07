@@ -30,8 +30,10 @@ export function* onFetchProducts() {
 }
 
 export function* handleSearchProduct({ name }) {
+
   try {
     const filterProducts = yield handleSearchProductByName(name);
+
     yield put(setProducts(filterProducts));
   } catch (error) {
     console.log(error);

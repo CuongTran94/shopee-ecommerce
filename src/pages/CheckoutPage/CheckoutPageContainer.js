@@ -28,7 +28,6 @@ const CheckoutPageContainer = props => {
 
   const handleCheckoutSuccess = status => {
     dispatch(setCheckoutSuccess({ status }));
-    console.log(cartID, 'cartID');
     dispatch(deleteCart(cartID));
   };
 
