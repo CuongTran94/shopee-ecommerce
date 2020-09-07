@@ -18,7 +18,9 @@ const SearchPage = ({ location }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(searchProduct(keyword));
-  });
+  }, [keyword]);
+
+  console.log(keyword);
 
   return (
     <Container>
