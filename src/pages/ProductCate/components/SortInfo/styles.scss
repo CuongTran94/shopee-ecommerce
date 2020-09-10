@@ -1,0 +1,45 @@
+.shopee {
+    &-sort {
+        &-bar {
+            display: flex;
+            margin-top: 30px;
+            height: 60px;
+            margin-bottom: 13px;
+            background: #EDEDED;
+            border-radius: 3px;
+            padding: 0 20px;
+            align-items: center;
+            font-size: 14px;
+
+            .ant-select {
+                &-selector {
+                    border: none !important;
+                    height: 34px !important;
+                    width: 200px !important;
+                    margin-left: 10px;
+                    align-items: center;
+                }
+            }
+        }
+
+        &-option {
+            .ant-tag {
+                padding: 0;
+                margin: 0 0 0 10px;
+                height: 34px;
+                line-height: 34px;
+                font-size: 14px;
+                padding: 0 15px;
+                text-transform: capitalize;
+
+                &-checkable {
+                    background: #fff;
+
+                    &-checked {
+                        background-color: #f53d2d;
+                    }
+                }
+            }            
+        }
+    }
+}

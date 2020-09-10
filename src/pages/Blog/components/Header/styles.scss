@@ -1,0 +1,58 @@
+.header {
+    &-wrap {
+        background-color: #ee4d2d;
+    }
+
+    &-blog {
+        height: 80px;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0px;
+        transition: all 0.3s ease 0s;
+        z-index: 9999;
+
+        &-logo {
+            float: left;
+            height: 80px;
+            margin-right: 40px;
+
+            a {
+                display: block;
+                line-height: 80px;
+            }
+        }
+
+        &-menu {
+            float: right;
+
+            .ant-menu {
+                background: none;
+                border: none;
+
+                &-item {
+                    border-bottom: none;
+                    top: 0;
+
+                    a {
+                        line-height: 80px;
+                        color: #fff;
+                        font-size: 15px;
+                        text-transform: uppercase;
+                        font-weight: 700;
+
+                        &:hover {
+                            color: #fff;
+                            border: none;
+                        }
+                    }
+
+                    &:hover {
+                        color: #fff !important;
+                        border-bottom: none !important;
+                    }
+                }                
+            }
+        }
+    }
+}

@@ -1,0 +1,34 @@
+.list-post {
+    margin-bottom: 40px;
+
+    .ant-list-item-meta {
+        &-avatar {
+            width: 360px;
+            height: 250px;
+        }
+
+        &-description {
+            font-size: 15px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
+
+    .load-more {
+        .ant-btn {
+            min-width: 100px;
+            background: transparent;
+            color: #999;
+            border-radius: 0;
+
+            &:hover {
+                background: #ee4d2d;
+                color: #fff;
+                border-color: #ee4d2d;
+            }
+        }
+    }
+}

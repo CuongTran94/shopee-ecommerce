@@ -23,6 +23,8 @@ import CheckoutPageContainer from './pages/CheckoutPage/CheckoutPageContainer';
 import SearchPage from './pages/SearchPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import User from './pages/UserPage';
+import ProductCateContainer from './pages/ProductCate/ProductCateContainer';
+import HomeBlogContainer from './pages/Blog/HomeBlog/HomeBlogContainer';
 
 const Main = withRouter(({ location }) => {
   const currentUser = useSelector(state => state.user.currentUser);
@@ -34,9 +36,11 @@ const Main = withRouter(({ location }) => {
 
   return (
     <div>
-      {location.pathname !== '/login' && location.pathname !== '/signup' ? (
-        <Header />
-      ) : null}
+      {location.pathname !== '/login' &&
+        location.pathname !== '/signup' &&
+        location.pathname !== '/blog' ? (
+          <Header />
+        ) : null}
       <Switch>
         <Route exact path="/" component={HomePageContainer} />
         <Route path="/login" component={LoginPageContainer} />
@@ -53,7 +57,9 @@ const Main = withRouter(({ location }) => {
         />
         <Route path="/daily_discover" component={DailyDiscoverContainer} />
         <ProtectedRoute path="/user" loggedIn={currentUser} component={User} />
+        <Route path="/cat/:slug" component={ProductCateContainer} />
         <Route path="/search" component={SearchPage} />
+        <Route path="/blog" component={HomeBlogContainer} />
         <Route path="/:slug" component={DetailPageContainer} />
       </Switch>
     </div>
