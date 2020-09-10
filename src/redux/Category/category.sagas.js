@@ -12,7 +12,6 @@ function* handleFetchCategories() {
   yield put(fetchCategoriesPending());
   try {
     const categories = yield call(fetchCategories);
-    console.log('cate', categories);
     yield put(fetchCategoriesSuccess(categories));
   } catch (error) {
     yield put(fetchCategoriesFailure());

@@ -11,19 +11,22 @@ import HotProduct from './components/HotProduct';
 import FlashSale from './components/FlashSale';
 import { fetchProducts } from '../../redux/Products/products.actions';
 import { fetchCategories } from '../../redux/Category/category.actions';
+import { fetchSliders } from '../../redux/Slider/slider.actions';
 
 const HomePageContainer = () => {
   const products = useSelector(state => state.product.listProducts);
   const loading = useSelector(state => state.product.isLoading);
   const categories = useSelector(state => state.category.categories);
+  const sliders = useSelector(state => state.slider.sliders);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchProducts());
     dispatch(fetchCategories());
+    dispatch(fetchSliders());
   }, []);
 
-  
+  console.log('sl', sliders);
 
   return (
     <div className="homepage" style={{ marginBottom: 70 }}>
@@ -31,7 +34,7 @@ const HomePageContainer = () => {
         className="home-box-slider"
         style={{ background: '#fff', boxShadow: '0 1px 1px 0 rgba(0,0,0,.04)' }}
       >
-        <Slider />
+        <Slider sliders={sliders} />
         <HotDeal />
       </div>
       <div className="home-banner-wrap">
