@@ -1,15 +1,14 @@
 import React from 'react';
 import { Row, Carousel } from 'antd';
 import { Link } from 'react-router-dom';
-import slider1 from '../../../../assets/images/slider_1.jpg';
-import slider2 from '../../../../assets/images/slider_2.jpg';
-import slider3 from '../../../../assets/images/slider_3.png';
 import banner1 from '../../../../assets/images/banner_1.jpg';
 import banner2 from '../../../../assets/images/banner_2.jpg';
 import './styles.scss';
-import sliderReducer from '../../../../redux/Slider/silder.reducers';
 
-const SliderList = ({ sliders }) => {
+
+
+
+const Slider = ({ sliders }) => {
   const slidersRender = sliders.map(slider => {
     return (
       <div key={slider.title}>
@@ -19,18 +18,13 @@ const SliderList = ({ sliders }) => {
       </div>
     );
   });
-  return slidersRender;
-};
-
-const Slider = ({ sliders }) => {
-  console.log(sliders);
   return (
     <div className="shopee-slider">
       <div className="container">
         <Row className="home-slider-wrap">
           <div className="home-slider">
-            <Carousel autoplay>
-              <SliderList sliders={sliders} />
+            <Carousel arrows autoplay>
+              {slidersRender}
             </Carousel>
           </div>
           <div className="home-banner">
