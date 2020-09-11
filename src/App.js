@@ -25,6 +25,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import User from './pages/UserPage';
 import ProductCateContainer from './pages/ProductCate/ProductCateContainer';
 import HomeBlogContainer from './pages/Blog/HomeBlog/HomeBlogContainer';
+import ChannelBlogContainer from './pages/Blog/ChannelBlog/ChannelBlogContainer';
 
 const Main = withRouter(({ location }) => {
   const currentUser = useSelector(state => state.user.currentUser);
@@ -60,6 +61,7 @@ const Main = withRouter(({ location }) => {
         <Route path="/cat/:slug" component={ProductCateContainer} />
         <Route path="/search" component={SearchPage} />
         <Route path="/blog" component={HomeBlogContainer} />
+        <Route path="/blog/:slug" component={ChannelBlogContainer} />
         <Route path="/:slug" component={DetailPageContainer} />
       </Switch>
     </div>
