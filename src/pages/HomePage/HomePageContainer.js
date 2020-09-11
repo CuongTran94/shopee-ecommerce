@@ -26,8 +26,6 @@ const HomePageContainer = () => {
     dispatch(fetchSliders());
   }, []);
 
-  console.log('sl', sliders);
-
   return (
     <div className="homepage" style={{ marginBottom: 70 }}>
       <div

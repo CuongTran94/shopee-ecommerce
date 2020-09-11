@@ -114,13 +114,8 @@ const data = [
 const ListProduct = (props) => {
     const { listProduct, isLoading, column } = props;
 
-    const products = listProduct.map(doc => {
-        return {
-            id: doc.id,
-            ...doc.data()
-        }
-    });
-    //const products = listProduct;
+    
+    const products = listProduct;
 
     const renderDescription = (price) => {
         return (
