@@ -14,20 +14,20 @@ const { Meta } = Card;
 
 const data = [
     {
-      title: "Nước tẩy trang cho mọi loại da L'Oreal Paris 3-in-1 Micellar Water 400ml",
-      img: product1
+        title: "Nước tẩy trang cho mọi loại da L'Oreal Paris 3-in-1 Micellar Water 400ml",
+        img: product1
     },
     {
-      title: "Kính cường lực iphone 6 6s 7 8 6 plus 6s plus 7 Plus 8 Plus X Xr XsMax 11 11 pro 11 pro max - 10D",
-      img: product2
+        title: "Kính cường lực iphone 6 6s 7 8 6 plus 6s plus 7 Plus 8 Plus X Xr XsMax 11 11 pro 11 pro max - 10D",
+        img: product2
     },
     {
-      title: "Bộ ga giường và vỏ gối , Bộ ga trải giường chọn mẫu theo phân loại",
-      img: product3
+        title: "Bộ ga giường và vỏ gối , Bộ ga trải giường chọn mẫu theo phân loại",
+        img: product3
     },
     {
-      title: "Chống nắng serum 3 trong 1 Senka White Beauty CC 40g",
-      img: product4
+        title: "Chống nắng serum 3 trong 1 Senka White Beauty CC 40g",
+        img: product4
     },
     {
         title: "[MKB Gift] Tặng Ba Mẹ Bí Quyết: Comfort Cho Da Nhạy Cảm, Nước Giặt Omo Dịu Nhẹ Trên Da, Nước Lau Sàn Sunlight Hương Hoa",
@@ -112,15 +112,16 @@ const data = [
 ];
 
 const ListProduct = (props) => {
-    const { listProduct, isLoading } = props;
-    
+    const { listProduct, isLoading, column } = props;
+
     const products = listProduct.map(doc => {
         return {
             id: doc.id,
             ...doc.data()
         }
     });
-    
+    //const products = listProduct;
+
     const renderDescription = (price) => {
         return (
             <React.Fragment>
@@ -130,8 +131,8 @@ const ListProduct = (props) => {
                 </div>
                 <div className="sale">
                     Đã bán 84,1k
-                </div>                
-            </React.Fragment>            
+                </div>
+            </React.Fragment>
         );
     };
 
@@ -148,14 +149,14 @@ const ListProduct = (props) => {
     return (
         <React.Fragment>
             {isLoading ? renderLoading() : <List
-                className="list-product" 
-                grid={{column: 6}}
+                className="list-product"
+                grid={{ column: column }}
                 dataSource={products}
-                locale={{emptyText: " "}}
+                locale={{ emptyText: " " }}
                 renderItem={item => (
                     <List.Item>
                         <Link to={`/${item.pro_slug}`}>
-                            <Card 
+                            <Card
                                 cover={<LazyLoadImg url={item.pro_avatar} alt={"photo"} />}
                                 bordered={false}
                                 className="list-product-card"
@@ -171,11 +172,13 @@ const ListProduct = (props) => {
 };
 
 ListProduct.propTypes = {
-    listProduct: PropTypes.array
+    listProduct: PropTypes.array,
+    column: PropTypes.number
 };
 
 ListProduct.defaultProps = {
-    listProduct: []
+    listProduct: [],
+    column: 6
 }
 
 export default ListProduct;
