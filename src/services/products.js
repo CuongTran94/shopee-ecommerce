@@ -1,4 +1,4 @@
-import { firestore } from '../constants/config';
+import fire, { firestore } from '../constants/config';
 import ProductDetail from '../pages/DetailPage/components/ProductDetail';
 
 export const handleFetchProduct = () => {
@@ -97,4 +97,16 @@ export const handleSearchProductByName = (name = '') => {
         reject(err);
       });
   });
+};
+
+export const fetchProductsByCategories = async (categoryIds = []) => {
+  try {
+    const productsRef = firestore.collection('products');
+    const products = await productsRef
+      .where('pro_cate', 'in', categoryIds)
+      .get();
+    return products.docs.map(doc => doc.data());
+  } catch (error) {
+    throw error;
+  }
 };

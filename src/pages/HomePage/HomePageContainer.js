@@ -16,7 +16,7 @@ import { fetchSliders } from '../../redux/Slider/slider.actions';
 const HomePageContainer = () => {
   const products = useSelector(state => state.product.listProducts);
   const loading = useSelector(state => state.product.isLoading);
-  const categories = useSelector(state => state.category.categories);
+  const categories = useSelector(state => state.category.mainCategories);
   const sliders = useSelector(state => state.slider.sliders);
   const dispatch = useDispatch();
 
@@ -25,8 +25,6 @@ const HomePageContainer = () => {
     dispatch(fetchCategories());
     dispatch(fetchSliders());
   }, []);
-
-  console.log('sl', sliders);
 
   return (
     <div className="homepage" style={{ marginBottom: 70 }}>

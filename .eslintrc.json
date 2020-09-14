@@ -22,6 +22,7 @@
     "react/jsx-wrap-multilines": "off",
     "prefer-promise-reject-errors": "off",
     "react/jsx-props-no-spreading": "off",
-    "require-yield": "off"
+    "require-yield": "off",
+    "no-var": "off"
   }
 }
