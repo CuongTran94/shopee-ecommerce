@@ -105,7 +105,7 @@ export const fetchProductsByCategories = async (categoryIds = []) => {
     const products = await productsRef
       .where('pro_cate', 'in', categoryIds)
       .get();
-    return products.docs.map(doc => doc.data());
+    return products.docs;
   } catch (error) {
     throw error;
   }

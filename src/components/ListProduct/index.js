@@ -126,7 +126,13 @@ const data = [
 const ListProduct = props => {
   const { listProduct, isLoading, column } = props;
 
-  const products = listProduct;
+  const products = listProduct.map(doc => {
+    return {
+      id: doc.id,
+      ...doc.data()
+    }
+  });
+  //const products = listProduct;
 
   const renderDescription = price => {
     return (
@@ -155,29 +161,29 @@ const ListProduct = props => {
       {isLoading ? (
         renderLoading()
       ) : (
-        <List
-          className="list-product"
-          grid={{ column: column }}
-          dataSource={products}
-          locale={{ emptyText: ' ' }}
-          renderItem={item => (
-            <List.Item>
-              <Link to={`/${item.pro_slug}`}>
-                <Card
-                  cover={<LazyLoadImg url={item.pro_avatar} alt={'photo'} />}
-                  bordered={false}
-                  className="list-product-card"
-                >
-                  <Meta
-                    title={item.pro_name}
-                    description={renderDescription(item.pro_price)}
-                  />
-                </Card>
-              </Link>
-            </List.Item>
-          )}
-        />
-      )}
+          <List
+            className="list-product"
+            grid={{ column: column }}
+            dataSource={products}
+            locale={{ emptyText: ' ' }}
+            renderItem={item => (
+              <List.Item>
+                <Link to={`/${item.pro_slug}`}>
+                  <Card
+                    cover={<LazyLoadImg url={item.pro_avatar} alt={'photo'} />}
+                    bordered={false}
+                    className="list-product-card"
+                  >
+                    <Meta
+                      title={item.pro_name}
+                      description={renderDescription(item.pro_price)}
+                    />
+                  </Card>
+                </Link>
+              </List.Item>
+            )}
+          />
+        )}
     </React.Fragment>
   );
 };
