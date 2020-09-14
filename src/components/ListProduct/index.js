@@ -10,7 +10,6 @@ import product4 from '../../assets/images/product_4.jpg';
 import product5 from '../../assets/images/product_5.jpg';
 import product6 from '../../assets/images/product_6.jpg';
 import LazyLoadImg from '../LazyLoadImg';
-
 const { Meta } = Card;
 
 const data = [
@@ -159,7 +158,7 @@ const ListProduct = props => {
         <List
           className="list-product"
           grid={{ column: column }}
-          dataSource={listProduct}
+          dataSource={products}
           locale={{ emptyText: ' ' }}
           renderItem={item => (
             <List.Item>

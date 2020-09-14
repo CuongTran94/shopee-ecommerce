@@ -68,9 +68,15 @@ export const fetchProductsByCates = categoryIds => {
   };
 };
 
-export const fetchProductsByCatesSuccess = products => {
+export const fetchProductsByCatesSuccess = (products = []) => {
   return {
     type: productTypes.FETCH_PRODUCTS_BY_CATEGORIES_SUCCESS,
     products
   };
 };
+
+export const cleanProductsCategory = ()=> {
+  return {
+    type: productTypes.CLEAN_PRODUCTS_CATEGORY
+  }
+}

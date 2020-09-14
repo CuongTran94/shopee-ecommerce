@@ -7,7 +7,10 @@ import CategoryFilter from './components/CategoryFilter';
 import SortInfo from './components/SortInfo';
 import { getIDFromUrl, getChildren } from '../../utils/cart';
 import { fetchCategories } from '../../redux/Category/category.actions';
-import { fetchProductsByCates } from '../../redux/Products//products.actions';
+import {
+  fetchProductsByCates,
+  cleanProductsCategory
+} from '../../redux/Products//products.actions';
 
 const ProductCateContainer = props => {
   const { location = '' } = props;
@@ -22,7 +25,11 @@ const ProductCateContainer = props => {
   }, []);
 
   useEffect(() => {
-    if (cateIds.length !== 0) dispatch(fetchProductsByCates(cateIds));
+    if (cateIds.length !== 0) {
+      dispatch(fetchProductsByCates(cateIds));
+    } else {
+      dispatch(cleanProductsCategory());
+    }
   }, [categories]);
 
   return (
