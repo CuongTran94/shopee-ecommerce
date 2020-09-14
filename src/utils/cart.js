@@ -1,4 +1,5 @@
 import { orderStatus, orderStatusString } from '../constants/orderStatus';
+import categoryTypes from '../redux/Category/category.types';
 
 export const getPrice = (price, qty) => {
   return price * qty;
@@ -44,4 +45,57 @@ export const getStatus = (status = 2) => {
     default:
       return orderStatusString.PROGRESSING_STRING;
   }
+};
+
+export const getIDFromUrl = url => {
+  try {
+    return url.substr(url.indexOf('.') + 1);
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getParrentByID = (id, data) => {
+  return data.find(x => x.id === id).c_parentId;
+};
+
+export const getFathers = (id, data) => {
+  var results = [];
+  const findAllFathers = (id, results) => {
+    data.map(object => {
+      if (object.id === getParrentByID(id, data)) {
+        results.push(object);
+        findAllFathers(getParrentByID(id, data), results);
+      }
+    });
+  };
+  findAllFathers(id, results);
+  return results;
+};
+
+
+
+
+export const getChildren = (id, data) => {
+  const results = [];
+
+  const findAllChildren = (id, results) => {
+    data.map(object => {
+      if (object.c_parentId === id) {
+        results.push(object);
+        findAllChildren(object.id, results);
+      }
+    });
+  };
+  findAllChildren(id, results);
+
+  return results;
+};
+
+export const getCateIds = (cates = []) => {
+  return cates.map(cate => cate.id);
+};
+
+export const getSubCates = (cateId, data = []) => {
+  return data.filter(item => cateId === item.c_parentId);
 };

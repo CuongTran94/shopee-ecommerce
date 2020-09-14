@@ -20,8 +20,6 @@ const SearchPage = ({ location }) => {
     dispatch(searchProduct(keyword));
   }, [keyword]);
 
-  console.log(keyword);
-
   return (
     <Container>
       <ListProduct listProduct={products} />

@@ -24,3 +24,10 @@ export const fetchCategoriesFailure = () => {
     type: categoryTypes.FETCH_CATEGORIES_FAILURE
   };
 };
+
+export const setCurrentCategory = categoryID => {
+  return {
+    type: categoryTypes.SET_CURRENT_CATEGORY,
+    categoryID
+  };
+};

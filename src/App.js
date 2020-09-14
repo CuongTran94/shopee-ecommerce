@@ -46,6 +46,8 @@ const Main = withRouter(({ location }) => {
         <Route exact path="/" component={HomePageContainer} />
         <Route path="/login" component={LoginPageContainer} />
         <Route path="/signup" component={RegisterPageContainer} />
+        <Route exact path="/cat/:slug" component={ProductCateContainer} />
+
         <ProtectedRoute
           path="/checkout"
           loggedIn={currentUser}
@@ -58,12 +60,11 @@ const Main = withRouter(({ location }) => {
         />
         <Route path="/daily_discover" component={DailyDiscoverContainer} />
         <ProtectedRoute path="/user" loggedIn={currentUser} component={User} />
-        <Route path="/cat/:slug" component={ProductCateContainer} />
         <Route path="/search" component={SearchPage} />
         <Route exact path="/blog" component={HomeBlogContainer} />
         <Route exact path="/blog/detail/:slug" component={DetailBlogContainer} />
         <Route path="/blog/:slug" component={ChannelBlogContainer} />
-        <Route path="/:slug" component={DetailPageContainer} />
+        <Route exact path="/:slug" component={DetailPageContainer} />
       </Switch>
     </div>
   );
