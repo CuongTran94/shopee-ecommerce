@@ -26,7 +26,7 @@ const ListCategories = ({ categories }) => {
       <Card.Grid key={category.c_slug} style={gridStyle}>
         <Link
           onClick={() => handleSetCurrentCate(category.id)}
-          to={`/cat/${category.c_slug}.${category.id}`}
+          to={`/cat/${category.c_slug}?categoryid=${category.id}`}
         >
           <div className="home-category-img">
             <img src={category.c_image} alt="" />
