@@ -2,35 +2,46 @@ import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
 import { Row } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
+import queryString from 'query-string';
 
 import CategoryFilter from './components/CategoryFilter';
 import SortInfo from './components/SortInfo';
-import { getIDFromUrl, getChildren } from '../../utils/cart';
-import { fetchCategories } from '../../redux/Category/category.actions';
 import {
-  fetchProductsByCates,
-  cleanProductsCategory
-} from '../../redux/Products//products.actions';
+  getChildren,
+  getCateIds,
+  getFathers,
+  getSubCates
+} from '../../utils/cart';
+import { fetchCategories } from '../../redux/Category/category.actions';
+import { fetchProductsByCates } from '../../redux/Products//products.actions';
 
 const ProductCateContainer = props => {
   const { location = '' } = props;
-  const id = getIDFromUrl(location.pathname);
+  const { categoryid } = queryString.parse(location.search);
   const categories = useSelector(state => state.category.categories);
-  const cateIds = getChildren(id, categories);
+
+  let cates = getChildren(categoryid, categories);
+  const cateIds = getCateIds(cates);
   const products = useSelector(state => state.product.productsCategory);
   const dispatch = useDispatch();
+
+  if (categories.length > 1) {
+    //
+    const rootCate = getFathers(categoryid, categories);
+    if (rootCate.length > 0) {
+      const subCates = getSubCates(rootCate[0].id, categories);
+      cates = subCates;
+    }
+  }
 
   useEffect(() => {
     dispatch(fetchCategories());
   }, []);
 
   useEffect(() => {
-    if (cateIds.length !== 0) {
-      dispatch(fetchProductsByCates(cateIds));
-    } else {
-      dispatch(cleanProductsCategory());
-    }
-  }, [categories]);
+    const addCurrentCate = [...cateIds, categoryid];
+    dispatch(fetchProductsByCates(addCurrentCate));
+  }, [categories, location]);
 
   return (
     <div
@@ -43,7 +54,7 @@ const ProductCateContainer = props => {
     >
       <div className="container">
         <Row>
-          <CategoryFilter />
+          <CategoryFilter parrentId={categoryid} cates={cates} />
           <SortInfo products={products} />
         </Row>
       </div>

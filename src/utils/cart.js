@@ -1,4 +1,5 @@
 import { orderStatus, orderStatusString } from '../constants/orderStatus';
+import categoryTypes from '../redux/Category/category.types';
 
 export const getPrice = (price, qty) => {
   return price * qty;
@@ -72,16 +73,29 @@ export const getFathers = (id, data) => {
   return results;
 };
 
+
+
+
 export const getChildren = (id, data) => {
-  var results = [];
+  const results = [];
+
   const findAllChildren = (id, results) => {
     data.map(object => {
       if (object.c_parentId === id) {
-        results.push(object.id);
+        results.push(object);
         findAllChildren(object.id, results);
       }
     });
   };
   findAllChildren(id, results);
+
   return results;
+};
+
+export const getCateIds = (cates = []) => {
+  return cates.map(cate => cate.id);
+};
+
+export const getSubCates = (cateId, data = []) => {
+  return data.filter(item => cateId === item.c_parentId);
 };
