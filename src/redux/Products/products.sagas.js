@@ -4,7 +4,7 @@ import {
   setTotalProducts,
   setLoadingProduct,
   setProductDetail,
-  searchProduct
+  fetchProductsByCatesSuccess
 } from './products.actions';
 import productTypes from './products.types';
 import {
@@ -12,7 +12,8 @@ import {
   getTotalProduct,
   handlePaginateProduct,
   handleFetchDetailProduct,
-  handleSearchProductByName
+  handleSearchProductByName,
+  fetchProductsByCategories
 } from '../../services/products';
 
 export function* getProducts() {
@@ -30,7 +31,6 @@ export function* onFetchProducts() {
 }
 
 export function* handleSearchProduct({ name }) {
-
   try {
     const filterProducts = yield handleSearchProductByName(name);
 
@@ -88,12 +88,30 @@ export function* onFetchProductDetail() {
   yield takeLatest(productTypes.FETCH_DETAIL_PRODUCT, fetchProductDetail);
 }
 
+export function* handleFetchProductsByCategories(action) {
+  const { categoryIds } = action;
+  try {
+    const products = yield call(fetchProductsByCategories, categoryIds);
+    yield put(fetchProductsByCatesSuccess(products));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function* wathFetchProductByCategories() {
+  yield takeLatest(
+    productTypes.FETCH_PRODUCTS_BY_CATEGORIES,
+    handleFetchProductsByCategories
+  );
+}
+
 export default function* productSagas() {
   yield all([
     call(onFetchProducts),
     call(onSetTotalProduct),
     call(onFetchPaginateProduct),
     call(onFetchProductDetail),
-    call(onSearchProducts)
+    call(onSearchProducts),
+    call(wathFetchProductByCategories)
   ]);
 }

@@ -60,3 +60,17 @@ export const searchProduct = name => {
     name
   };
 };
+
+export const fetchProductsByCates = categoryIds => {
+  return {
+    type: productTypes.FETCH_PRODUCTS_BY_CATEGORIES,
+    categoryIds
+  };
+};
+
+export const fetchProductsByCatesSuccess = products => {
+  return {
+    type: productTypes.FETCH_PRODUCTS_BY_CATEGORIES_SUCCESS,
+    products
+  };
+};

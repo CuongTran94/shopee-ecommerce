@@ -2,6 +2,7 @@ import productTypes from './products.types';
 
 const initialState = {
   listProducts: [],
+  productsCategory: [],
   detailProduct: null,
   total: 0,
   isLoading: true
@@ -30,6 +31,11 @@ const productReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: action.payload
+      };
+    case productTypes.FETCH_PRODUCTS_BY_CATEGORIES_SUCCESS:
+      return {
+        ...state,
+        productsCategory: action.products
       };
     default:
       return state;
