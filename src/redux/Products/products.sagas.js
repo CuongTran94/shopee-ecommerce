@@ -13,7 +13,8 @@ import {
   handlePaginateProduct,
   handleFetchDetailProduct,
   handleSearchProductByName,
-  fetchProductsByCategories
+  fetchProductsByCategories,
+  fetchProductsByRangePrice
 } from '../../services/products';
 
 export function* getProducts() {
@@ -89,9 +90,12 @@ export function* onFetchProductDetail() {
 }
 
 export function* handleFetchProductsByCategories(action) {
-  const { categoryIds } = action;
+  const { categoryIds, order } = action;
   try {
-    const products = yield call(fetchProductsByCategories, categoryIds);
+    const products = yield call(fetchProductsByCategories, {
+      categoryIds,
+      order
+    });
     yield put(fetchProductsByCatesSuccess(products));
   } catch (error) {
     console.log(error);
@@ -105,6 +109,28 @@ export function* wathFetchProductByCategories() {
   );
 }
 
+export function* handleFetchProductByRangePrice(action) {
+  const { categoryIds, order, lowPrice, highPrice } = action;
+  try {
+    const products = yield call(fetchProductsByRangePrice, {
+      categoryIds,
+      order,
+      lowPrice,
+      highPrice
+    });
+    yield put(fetchProductsByCatesSuccess(products));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export function* wathFetchProductByRangePrice() {
+  yield takeLatest(
+    productTypes.FETCH_PRODUCT_BY_RANGE_PRICE,
+    handleFetchProductByRangePrice
+  );
+}
+
 export default function* productSagas() {
   yield all([
     call(onFetchProducts),
@@ -112,6 +138,7 @@ export default function* productSagas() {
     call(onFetchPaginateProduct),
     call(onFetchProductDetail),
     call(onSearchProducts),
-    call(wathFetchProductByCategories)
+    call(wathFetchProductByCategories),
+    call(wathFetchProductByRangePrice)
   ]);
 }
