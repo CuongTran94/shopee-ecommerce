@@ -1,0 +1,33 @@
+.article {
+    &-related {
+        .ant-card {
+            background: transparent;
+
+            &-body {
+                padding: 8px 0;
+            }
+
+            &-meta {
+                &-title {
+                    font-size: 13px;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                    white-space: inherit;
+                }
+            }
+        }
+
+        .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+            color: #ee4d2d;
+        }
+
+        .ant-tabs-ink-bar {
+            background: #ee4d2d;
+        }
+
+        .ant-tabs-top > .ant-tabs-nav::before {
+            border-bottom: 2px solid #ee4d2d;
+        }
+    }
+}

@@ -1,0 +1,55 @@
+.article {
+    margin-top: 80px;
+    background: #fff;
+    border-radius: 3px;
+    padding: 30px;
+
+    &-cate {
+        background: #222222;
+        padding: 0 6px;
+        display: inline-block;
+        font-size: 11px;
+        margin-bottom: 12px;
+
+        a {
+            color: #fff;            
+        }
+    }
+
+    &-meta {
+        overflow: hidden;
+        font-size: 12px;
+        color: #000;
+
+        &-author {
+            float: left;
+            margin-right: 12px;
+            font-weight: bold;
+        }
+
+        &-date {
+            float: left;            
+        }
+
+        &-view {
+            float: right;
+            margin-right: 16px;
+        }
+
+        &-comment {
+            float: right;
+        }
+    }
+
+    &-social {
+        clear: both;
+        margin-top: 16px;
+    }
+
+    &-main {
+        font-size: 16px;
+        color: #333;
+        line-height: 1.7;
+        margin-top: 40px;
+    }
+}
