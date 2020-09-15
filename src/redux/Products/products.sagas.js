@@ -90,11 +90,13 @@ export function* onFetchProductDetail() {
 }
 
 export function* handleFetchProductsByCategories(action) {
-  const { categoryIds, order } = action;
+  const { categoryIds, order, sortBy } = action;
+
   try {
     const products = yield call(fetchProductsByCategories, {
       categoryIds,
-      order
+      order,
+      sortBy
     });
     yield put(fetchProductsByCatesSuccess(products));
   } catch (error) {
