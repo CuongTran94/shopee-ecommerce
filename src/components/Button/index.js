@@ -7,6 +7,7 @@ const StyledButton = styled(Button)`
   background: ${SHOPEE_ORANGE};
   color: ${SHOPEE_WHITE};
   text-transform: capitalize;
+  border-color: ${SHOPEE_ORANGE};
   &:hover,
   &:focus {
     color: ${SHOPEE_WHITE};

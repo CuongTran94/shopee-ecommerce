@@ -32,7 +32,7 @@ const Main = withRouter(({ location }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(checkUserLogin());
+    //dispatch(checkUserLogin());
   }, []);
 
   return (
@@ -59,7 +59,8 @@ const Main = withRouter(({ location }) => {
           component={CartPageContainer}
         />
         <Route path="/daily_discover" component={DailyDiscoverContainer} />
-        <ProtectedRoute path="/user" loggedIn={currentUser} component={User} />
+        {/* <ProtectedRoute path="/user" loggedIn={currentUser} component={User} /> */}
+        <Route path="/user/profile" component={User} />
         <Route path="/search" component={SearchPage} />
         <Route exact path="/blog" component={HomeBlogContainer} />
         <Route exact path="/blog/detail/:slug" component={DetailBlogContainer} />

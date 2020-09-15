@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Table, Space, Layout } from 'antd';
+import { Table, Space, Layout, Typography } from 'antd';
 import { Link } from 'react-router-dom';
+import { StyledHeader } from '../components';
 
 import { fetchOrderManagement } from '../../../redux/Order/order.actions';
 import {
@@ -11,6 +12,7 @@ import {
 } from '../../../utils/cart';
 
 const { Header, Content } = Layout;
+const { Title } = Typography;
 
 const columns = [
   {
@@ -76,9 +78,9 @@ const PerchasePage = () => {
 
   return (
     <Layout>
-      <Header style={{ height: '100px' }}>
-        <h2>Quản lý đơn hàng</h2>
-      </Header>
+      <StyledHeader style={{ padding: '0 30px' }}>
+        <Title level={3}>Quản lý đơn hàng</Title>
+      </StyledHeader>
       <Content>
         <Table columns={columns} dataSource={newData} />
       </Content>

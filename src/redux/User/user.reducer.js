@@ -1,7 +1,16 @@
 import userTypes from './user.types';
 
 const initialState = {
-  currentUser: null,
+  currentUser: {
+    username: 'cuong',
+    fullName: 'cuong tran',
+    gender: 'male',
+    phoneNumber: '0133433434',
+    email: 'cuong@gmail.com',
+    address: '123 nui thanh',
+    dateOfBirth: new Date,
+    id: '1'
+  },
   authErr: null,
   isLoading: false,
   error: '',

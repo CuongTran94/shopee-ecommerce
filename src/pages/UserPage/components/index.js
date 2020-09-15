@@ -5,13 +5,19 @@ import { SHOPEE_ORANGE } from '../../../constants/color';
 
 const { Header, Content, Footer } = Layout;
 
-const StyledLayout = styled(Layout)`
-  padding-left: 100px;
+const StyledLayout = styled(Layout)`  
   background-color: white;
+  padding: 0 30px;
 `;
 
-const SytledHeader = styled(Header)`
-  height: 100px;
+const StyledHeader = styled(Header)`
+    height: 80px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid #EFEFEF;
+    background: #fff;
 `;
 const StyledContent = styled(Content)``;
 
@@ -20,6 +26,7 @@ const StyledItem = styled(Form.Item)`
 
   .ant-form-item-required,
   label {
+    font-size: 15px;
     color: #757575;
     margin-right: 10px;
     &::before,
@@ -50,7 +57,7 @@ export {
   StyledItem,
   Container,
   StyledLayout,
-  SytledHeader,
+  StyledHeader,
   StyledContent,
   StylePrice
 };
