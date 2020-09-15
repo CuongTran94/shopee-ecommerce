@@ -60,7 +60,7 @@ export const getParrentByID = (id, data) => {
 };
 
 export const getFathers = (id, data) => {
-  var results = [];
+  const results = [];
   const findAllFathers = (id, results) => {
     data.map(object => {
       if (object.id === getParrentByID(id, data)) {

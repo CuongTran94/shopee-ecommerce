@@ -101,10 +101,27 @@ export const handleSearchProductByName = (name = '') => {
 
 export const fetchProductsByCategories = async ({
   categoryIds = [],
-  order = 'asc'
+  order = 'asc',
+  sortBy
 }) => {
   try {
     const productsRef = firestore.collection('products');
+    if (sortBy === 'ctime') {
+      const products = await productsRef
+        .where('pro_cate', 'in', categoryIds)
+        .orderBy('createdAt', 'desc')
+        .get();
+      return products.docs;
+    }
+
+    if (sortBy === 'sales') {
+      const products = await productsRef
+        .where('pro_cate', 'in', categoryIds)
+        .orderBy('pro_sold', 'desc')
+        .get();
+      return products.docs;
+    }
+
     const products = await productsRef
       .where('pro_cate', 'in', categoryIds)
       .orderBy('pro_price', order)
