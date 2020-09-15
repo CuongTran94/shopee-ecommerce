@@ -32,7 +32,7 @@ const Main = withRouter(({ location }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(checkUserLogin());
+    //dispatch(checkUserLogin());
   }, []);
 
   return (

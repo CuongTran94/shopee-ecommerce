@@ -5,7 +5,7 @@ import { Table } from 'antd';
 
 import TablePrice from './tablePrice';
 import { SHOPEE_ORANGE } from '../../../constants/color';
-import { StyledLayout, SytledHeader, StyledContent } from '../components';
+import { StyledLayout, StyledHeader, StyledContent } from '../components';
 import { fetchOrderDetail } from '../../../redux/Order/order.actions';
 
 import { getTotalPrice, sepratePriceNumber } from '../../../utils/cart';
@@ -122,7 +122,7 @@ const OrderDetailPage = props => {
 
   return (
     <StyledLayout>
-      <SytledHeader />
+      <StyledHeader />
       <StyledContent>
         <HeaderInfo>
           <LeftAddressInfo>

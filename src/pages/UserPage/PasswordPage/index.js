@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react';
-import { Form, Layout } from 'antd';
+import { Form, Layout, Typography } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import StyledButton from '../../../components/Button';
-import { StyledItem, StyledInputPassword } from '../components';
+import { StyledItem, StyledInputPassword, StyledLayout, StyledHeader } from '../components';
 import { changePassword, logoutUser } from '../../../redux/User/user.actions';
 import { handleSuccess, handleError } from './Modal';
 import { ruleRequired, matchRule } from './Rule';
 import { layout, tailLayout } from './Layout';
 
 const { Header, Content } = Layout;
+const { Title } = Typography;
 
 const PasswordChanging = () => {
   const dispatch = useDispatch();
@@ -34,12 +35,13 @@ const PasswordChanging = () => {
   }, [error, success]);
 
   return (
-    <Layout>
-      <Header style={{ height: '100px' }}>
-        <h2>Đổi mật khẩu</h2>
-      </Header>
+    <StyledLayout>
+      <StyledHeader>
+        <Title level={3} style={{ marginBottom: 4 }}>Đổi mật khẩu</Title>
+        <span style={{ lineHeight: '17px', height: '17px' }}>Để bảo mật tài khoản, vui lòng không chia sẻ mật khẩu cho người khác</span>
+      </StyledHeader>
       <Content>
-        <Form {...layout} name="basic" onFinish={onFinish}>
+        <Form {...layout} name="basic" onFinish={onFinish} style={{ marginTop: 24 }}>
           <StyledItem
             label="Mật khẩu hiện tại"
             name="currentPassword"
@@ -72,7 +74,7 @@ const PasswordChanging = () => {
           </StyledItem>
         </Form>
       </Content>
-    </Layout>
+    </StyledLayout>
   );
 };
 

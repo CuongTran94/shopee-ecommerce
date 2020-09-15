@@ -1,25 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
-import { UserOutlined, ShoppingCartOutlined } from '@ant-design/icons';
+import { UserOutlined, ShoppingCartOutlined, EditOutlined } from '@ant-design/icons';
 
 import ProfilePage from './Profile';
 import PasswordChanging from './PasswordPage';
 import Purchase from './PerchasePage';
 import OrderDetailPage from './OrderDetailPage';
+import avaDefault from '../../assets/images/avatar-default.png';
 
 const { Header, Footer, Sider, Content } = Layout;
 const { SubMenu } = Menu;
 
 const Container = styled.div`
-  margin: 128px 75px;
+  margin: 138px auto 50px auto;
+  overflow: hidden;
+  width: 1200px;
 `;
 
 const StyledLayout = styled(Layout)`
-  .ant-layout-header,
+  background: #f5f5f5;
+  
   .ant-layout-sider {
-    background-color: white;
+    background-color: transparent;
   }
 `;
 
@@ -38,13 +42,56 @@ const StyledSider = styled(Sider)`
 const StyledFooter = styled(Footer)``;
 
 const TopSider = styled.div`
-  height: 100px;
+  padding: 0 34px 12px 24px;
+  display: flex;
+  border-bottom: 1px solid #EFEFEF;
+  align-items: center;
+
+  img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+
+  a {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    color: #333;
+  }
 `;
 
 const StyledMenu = styled(Menu)`
+  background: transparent;
+  font-size: 15px;
+
   .ant-menu-submenu-arrow {
     display: none;
   }
+
+  .ant-menu-submenu-selected {
+    color: #fb5533;
+  }
+
+  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background-color: transparent;
+  }
+
+  .ant-menu-item-selected {
+    color: #fb5533;   
+    background-color: transparent !important; 
+
+    &:after {
+      border-right: 0;
+    }
+  }
+
+  .ant-menu-submenu > .ant-menu {
+    background: transparent;
+  }  
 `;
 
 const UserPage = ({ match: { url } }) => {
@@ -57,7 +104,13 @@ const UserPage = ({ match: { url } }) => {
     <Container>
       <StyledLayout>
         <StyledSider>
-          <TopSider></TopSider>
+          <TopSider>
+            <img src={avaDefault} alt="" />
+            <Link to="/">
+              <span>Cuong Tran</span>
+              <span><EditOutlined /> Sửa Hồ Sơ</span>
+            </Link>
+          </TopSider>
           <StyledMenu
             onClick={handleClick}
             defaultSelectedKeys={['1']}

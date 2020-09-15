@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import moment from 'moment';
 
 import StyleButton from '../../../components/Button/index';
-import { StyledItem, StyledLayout } from '../components';
+import { StyledItem, StyledLayout, StyledHeader } from '../components';
 import { updateUserInfo } from '../../../redux/User/user.actions';
 
 const { Header, Content } = Layout;
@@ -51,9 +51,10 @@ const ProfilePage = () => {
   return (
     <Container>
       <StyledLayout>
-        <Header style={{ height: '100px' }}>
-          <Title level={3}>Hồ sơ của tôi</Title>
-        </Header>
+        <StyledHeader>
+          <Title level={3} style={{ marginBottom: 4 }}>Hồ sơ của tôi</Title>
+          <span style={{ lineHeight: '17px', height: '17px' }}>Quản lý thông tin hồ sơ để bảo mật tài khoản</span>
+        </StyledHeader>
 
         <Content>
           <Form
@@ -69,24 +70,25 @@ const ProfilePage = () => {
             onFinish={onFinish}
             {...layout}
             name="form-shipping"
+            style={{ marginTop: 24 }}
           >
             <StyledItem name="username" label="Tên đăng nhập">
-              <Input style={{ width: ' 300px' }} disabled />
+              <Input style={{ width: ' 500px' }} disabled />
             </StyledItem>
 
             <StyledItem label="Tên" name="fullName">
-              <Input style={{ width: ' 300px' }} />
+              <Input style={{ width: ' 500px' }} />
             </StyledItem>
 
             <StyledItem label="Số điện thoại" name="phoneNumber" disabled>
-              <Input style={{ width: ' 300px' }} />
+              <Input style={{ width: ' 500px' }} />
             </StyledItem>
             <StyledItem label="Email" name="email">
-              <Input style={{ width: ' 300px' }} disabled />
+              <Input style={{ width: ' 500px' }} disabled />
             </StyledItem>
 
             <StyledItem name="address" label="Địa chỉ">
-              <TextArea style={{ width: '300px' }} />
+              <TextArea style={{ width: '500px' }} />
             </StyledItem>
 
             <StyledItem label="Giới tính" name="gender">
@@ -98,7 +100,7 @@ const ProfilePage = () => {
             </StyledItem>
 
             <StyledItem name="dateOfBirth" label="Ngày sinh">
-              <DatePicker style={{ width: ' 300px' }} format={dateFormat} />
+              <DatePicker style={{ width: ' 500px' }} format={dateFormat} />
             </StyledItem>
 
             <StyledItem {...tailLayout}>
