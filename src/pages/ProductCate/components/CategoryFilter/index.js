@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
-import { Row, Col, Typography, Checkbox, Input, Button, List } from 'antd';
+import {
+  Row,
+  Col,
+  Typography,
+  Checkbox,
+  InputNumber,
+  Button,
+  List
+} from 'antd';
 import { UnorderedListOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+
+import { fetchProductByRangePrice } from '../../../../redux/Products/products.actions';
 
 const { Title } = Typography;
 const data = [
@@ -15,7 +26,27 @@ const data = [
   { id: 6, title: 'Đồ bộ' }
 ];
 
-const CategoryFilter = ({ cates }) => {
+const CategoryFilter = ({ cates, categoryIds, order }) => {
+  const [lowPrice, setLowPrice] = useState();
+  const [highPrice, setHighPrice] = useState();
+
+  const handleChangeLowPrice = value => {
+    setLowPrice(value);
+  };
+
+  const handleChangeHighPrice = value => {
+    setHighPrice(value);
+  };
+
+  const dispatch = useDispatch();
+
+  const handleApply = () => {
+    if (lowPrice !== undefined && highPrice !== undefined)
+      dispatch(
+        fetchProductByRangePrice(categoryIds, order, lowPrice, highPrice)
+      );
+  };
+
   return (
     <Col lg={4}>
       <div className="shopee-filter-pannel">
@@ -56,11 +87,21 @@ const CategoryFilter = ({ cates }) => {
           <div className="shopee-filter-group__header">Khoảng giá</div>
           <div className="shopee-filter-group__body">
             <div className="shopee-price-range">
-              <Input placeholder="đ TỪ" />
+              <InputNumber
+                name="lowPrice"
+                onChange={handleChangeLowPrice}
+                placeholder="đ TỪ"
+              />
               <span className="shopee-price-line"></span>
-              <Input placeholder="đ ĐẾN" />
+              <InputNumber
+                name="highPrice"
+                onChange={handleChangeHighPrice}
+                placeholder="đ ĐẾN"
+              />
             </div>
-            <Button className="shopee-price-btn">Áp dụng</Button>
+            <Button onClick={handleApply} className="shopee-price-btn">
+              Áp dụng
+            </Button>
           </div>
         </div>
       </div>

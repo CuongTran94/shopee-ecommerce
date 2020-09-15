@@ -61,10 +61,11 @@ export const searchProduct = name => {
   };
 };
 
-export const fetchProductsByCates = categoryIds => {
+export const fetchProductsByCates = (categoryIds, order = 'asc') => {
   return {
     type: productTypes.FETCH_PRODUCTS_BY_CATEGORIES,
-    categoryIds
+    categoryIds,
+    order
   };
 };
 
@@ -75,8 +76,23 @@ export const fetchProductsByCatesSuccess = (products = []) => {
   };
 };
 
-export const cleanProductsCategory = ()=> {
+export const cleanProductsCategory = () => {
   return {
     type: productTypes.CLEAN_PRODUCTS_CATEGORY
-  }
-}
+  };
+};
+
+export const fetchProductByRangePrice = (
+  categoryIds,
+  order = 'asc',
+  lowPrice,
+  highPrice
+) => {
+  return {
+    type: productTypes.FETCH_PRODUCT_BY_RANGE_PRICE,
+    categoryIds,
+    order,
+    lowPrice,
+    highPrice
+  };
+};

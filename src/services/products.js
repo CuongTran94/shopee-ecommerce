@@ -99,11 +99,35 @@ export const handleSearchProductByName = (name = '') => {
   });
 };
 
-export const fetchProductsByCategories = async (categoryIds = []) => {
+export const fetchProductsByCategories = async ({
+  categoryIds = [],
+  order = 'asc'
+}) => {
   try {
     const productsRef = firestore.collection('products');
     const products = await productsRef
       .where('pro_cate', 'in', categoryIds)
+      .orderBy('pro_price', order)
+      .get();
+    return products.docs;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const fetchProductsByRangePrice = async ({
+  categoryIds = [],
+  order = 'asc',
+  lowPrice,
+  highPrice
+}) => {
+  try {
+    const productsRef = firestore.collection('products');
+    const products = await productsRef
+      .where('pro_cate', 'in', categoryIds)
+      .where('pro_price', '>=', lowPrice)
+      .where('pro_price', '<=', highPrice)
+      .orderBy('pro_price', order)
       .get();
     return products.docs;
   } catch (error) {
