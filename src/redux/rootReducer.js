@@ -5,6 +5,7 @@ import cartReducer from './Cart/cart.reducers';
 import orderReducer from './Order/order.reducers';
 import categoryReducer from './Category/category.reducers';
 import sliderReducer from './Slider/silder.reducers';
+import blogReducer from './Blog/blog.reducers';
 
 export default combineReducers({
   user: userReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   cart: cartReducer,
   order: orderReducer,
   category: categoryReducer,
-  slider: sliderReducer
+  slider: sliderReducer,
+  blog: blogReducer
 });
