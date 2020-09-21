@@ -1,19 +1,6 @@
 import cartTypes from './cart.types';
 import { containsObject } from '../../utils/cart';
 
-const initState = {
-  products: [
-    {
-      pro_id: null,
-      pro_name: null,
-      pro_avatar: null,
-      pro_price: null,
-      pro_quantity: null
-    }
-  ],
-  userID: null
-};
-
 const cartReducer = (state = { products: [], userID: null }, action) => {
   switch (action.type) {
     case cartTypes.SET_CART: {
