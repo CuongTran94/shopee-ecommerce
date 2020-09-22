@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { List, Skeleton, Typography, Button } from 'antd';
 import PropTypes from 'prop-types';
 import Avatar from 'antd/lib/avatar/avatar';
@@ -7,26 +7,15 @@ import './styles.scss';
 
 const { Title } = Typography;
 
-const data = [
-  { title: 'Muji Việt Nam và top sản phẩm HOT nhất đến từ thương hiệu này' },
-  { title: 'So sánh BHA của Paula Choice và BHA the Ordinay' },
-  { title: 'So sánh BHA của Paula Choice và BHA the Ordinay 1' },
-  { title: 'So sánh BHA của Paula Choice và BHA the Ordinay 2' },
-  { title: 'So sánh BHA của Paula Choice và BHA the Ordinay 3' },
-  { title: 'So sánh BHA của Paula Choice và BHA the Ordinay 4' },
-  { title: 'So sánh BHA của Paula Choice và BHA the Ordinay 5' },
-  { title: 'So sánh BHA của Paula Choice và BHA the Ordinay 6' },
-  { title: 'So sánh BHA của Paula Choice và BHA the Ordinay 6' },
-  { title: 'So sánh BHA của Paula Choice và BHA the Ordinay 6' }
-];
-
 const ListPost = props => {
   const [loading, setLoading] = useState(true);
-  const { listPosts } = props;
+  const { listPosts, handleNextPage, handleLoadMore, error } = props;
 
   const loadmore = loading ? (
     <div className="load-more">
-      <Button>Load more</Button>
+      <Button disabled={error} type="primary" onClick={handleLoadMore}>
+        Load more
+      </Button>
     </div>
   ) : null;
 

@@ -5,11 +5,17 @@ import {
   setSubPost,
   setListPost,
   fetchPostDetailSuccess,
-  fetchPostDetail
+  fetchPostsFirstLoad,
+  fetchPostsFirstLoadSuccess,
+  setVisible,
+  setLoading,
+  setError
 } from './blog.actions';
 import {
   fetchPostsService,
-  fetchPostDetailService
+  fetchPostDetailService,
+  fetchPostFirstLoadService,
+  retrieveMore
 } from '../../services/blogs';
 import blogTypes from './blog.types';
 
@@ -39,6 +45,39 @@ export function* watchFetchPostDetail() {
   yield takeLatest(blogTypes.FETCH_POST_DETAIL, handleFetchPostDetail);
 }
 
+export function* handleFetchPostsFirstLoad() {
+  const post = yield call(fetchPostFirstLoadService);
+  const { documentData, lastVisible } = post;
+  yield put(fetchPostsFirstLoadSuccess(documentData));
+  yield put(setVisible(lastVisible));
+}
+
+export function* watchFetchPostFirstLoad() {
+  yield takeLatest(blogTypes.FETCH_POSTS_FIRST_LOAD, handleFetchPostsFirstLoad);
+}
+
+export function* handleFetchPostsLoadMore(action) {
+  const { lastId } = action;
+  try {
+    const post = yield call(() => retrieveMore(lastId));
+    const { documentData, lastVisible } = post;
+
+    yield put(fetchPostsFirstLoadSuccess(documentData));
+    yield put(setVisible(lastVisible));
+  } catch (error) {
+    yield put(setError(true));
+  }
+}
+
+export function* watchFetchPostsLoadMore() {
+  yield takeLatest(blogTypes.FETCH_POSTS_LOAD_MORE, handleFetchPostsLoadMore);
+}
+
 export default function* blogSagas() {
-  yield all([call(watchFetchPosts), call(watchFetchPostDetail)]);
+  yield all([
+    call(watchFetchPosts),
+    call(watchFetchPostDetail),
+    call(watchFetchPostFirstLoad),
+    call(watchFetchPostsLoadMore)
+  ]);
 }

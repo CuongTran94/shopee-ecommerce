@@ -19,7 +19,10 @@ const initPost = {
   mainPost: {},
   subPosts: [],
   listPosts: [],
-  postDetail: {}
+  postDetail: {},
+  lastVisible: '',
+  postsInfinite: [],
+  error: false
 };
 const postReducers = (state = initPost, action) => {
   switch (action.type) {
@@ -47,6 +50,21 @@ const postReducers = (state = initPost, action) => {
       return {
         ...state,
         postDetail: action.post
+      };
+    case blogTypes.FETCH_POSTS_FIRST_LOAD_SUCCESS:
+      return {
+        ...state,
+        postsInfinite: [...state.postsInfinite, ...action.posts]
+      };
+    case blogTypes.SET_LAST_VISIBLE:
+      return {
+        ...state,
+        lastVisible: action.lastVisible
+      };
+    case blogTypes.SET_ERROR:
+      return {
+        ...state,
+        error: action.status
       };
     default:
       return state;
