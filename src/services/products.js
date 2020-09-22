@@ -37,6 +37,8 @@ export const getTotalProduct = async () => {
 };
 
 export const handlePaginateProduct = async ({ snapshot = [], page, limit }) => {
+  
+
   try {
     if (page === 1) {
       snapshot = 0;
