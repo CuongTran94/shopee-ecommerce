@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './styles.scss';
 import {
-  Row,
   Col,
   Typography,
   Checkbox,
   InputNumber,
   Button,
-  List
+  List,
+  message
 } from 'antd';
 import { UnorderedListOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
@@ -17,14 +17,6 @@ import { useDispatch } from 'react-redux';
 import { fetchProductByRangePrice } from '../../../../redux/Products/products.actions';
 
 const { Title } = Typography;
-const data = [
-  { id: 1, title: 'Thời trang nam' },
-  { id: 2, title: 'Áo thun' },
-  { id: 3, title: 'Áo sơ mi' },
-  { id: 4, title: 'Áo khoác' },
-  { id: 5, title: 'Áo nỉ' },
-  { id: 6, title: 'Đồ bộ' }
-];
 
 const CategoryFilter = ({ cates, categoryIds, order }) => {
   const [lowPrice, setLowPrice] = useState();
@@ -41,10 +33,13 @@ const CategoryFilter = ({ cates, categoryIds, order }) => {
   const dispatch = useDispatch();
 
   const handleApply = () => {
-    if (lowPrice !== undefined && highPrice !== undefined)
+    if (lowPrice !== undefined && highPrice !== undefined) {
       dispatch(
         fetchProductByRangePrice(categoryIds, order, lowPrice, highPrice)
       );
+      return;
+    }
+    message.error('Khoảng giá trống');
   };
 
   return (
@@ -88,12 +83,14 @@ const CategoryFilter = ({ cates, categoryIds, order }) => {
           <div className="shopee-filter-group__body">
             <div className="shopee-price-range">
               <InputNumber
+                min={0}
                 name="lowPrice"
                 onChange={handleChangeLowPrice}
                 placeholder="đ TỪ"
               />
               <span className="shopee-price-line"></span>
               <InputNumber
+                min={0}
                 name="highPrice"
                 onChange={handleChangeHighPrice}
                 placeholder="đ ĐẾN"

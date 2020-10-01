@@ -8,10 +8,14 @@ import ListProduct from '../../../../components/ListProduct';
 
 const { Option } = Select;
 const { CheckableTag } = Tag;
-const sortData = ['Phổ biến', 'Mới nhất', 'Bán chạy'];
+const sortData = [
+  { name: 'Phổ biến', id: 0, value: 'pop' },
+  { name: 'Mới nhất', id: 1, value: 'ctime' },
+  { name: 'Bán chạy', id: 2, value: 'sales' }
+];
 
 const SortInfo = ({ products = [], location, categoryid }) => {
-  const [selectTag, setSelectTag] = useState('Phổ biến');
+  const [current, setCurrent] = useState(0);
   const history = useHistory();
 
   const handleChange = value => {
@@ -19,6 +23,13 @@ const SortInfo = ({ products = [], location, categoryid }) => {
       `${location.pathname}?categoryid=${categoryid}&order=${value}`
     );
   };
+
+  const handleSortByOption = value => {
+    history.push(
+      `${location.pathname}?categoryid=${categoryid}&sortBy=${value}`
+    );
+  };
+
   return (
     <Col lg={20}>
       <div className="shopee-sort-result">
@@ -26,8 +37,15 @@ const SortInfo = ({ products = [], location, categoryid }) => {
           <span>Sắp xếp theo</span>
           <div className="shopee-sort-option">
             {sortData.map(item => (
-              <CheckableTag key={item} checked={selectTag.indexOf(item) > -1}>
-                {item}
+              <CheckableTag
+                onClick={() => {
+                  setCurrent(item.id);
+                  handleSortByOption(item.value);
+                }}
+                key={item.id}
+                checked={item.id === current}
+              >
+                {item.name}
               </CheckableTag>
             ))}
           </div>

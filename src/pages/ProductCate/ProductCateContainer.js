@@ -17,7 +17,9 @@ import { fetchProductsByCates } from '../../redux/Products//products.actions';
 
 const ProductCateContainer = props => {
   const { location = '' } = props;
-  const { categoryid, order = 'asc' } = queryString.parse(location.search);
+  const { categoryid, order = 'asc', sortBy = undefined } = queryString.parse(
+    location.search
+  );
   const categories = useSelector(state => state.category.categories);
 
   let cates = getChildren(categoryid, categories);
@@ -40,7 +42,7 @@ const ProductCateContainer = props => {
 
   useEffect(() => {
     const addCurrentCate = [...cateIds, categoryid];
-    dispatch(fetchProductsByCates(addCurrentCate, order));
+    dispatch(fetchProductsByCates(addCurrentCate, order, sortBy));
   }, [categories, location]);
 
   return (
@@ -55,7 +57,7 @@ const ProductCateContainer = props => {
       <div className="container">
         <Row>
           <CategoryFilter
-            categoryIds={cateIds}
+            categoryIds={[...cateIds, categoryid]}
             order={order}
             parrentId={categoryid}
             cates={cates}

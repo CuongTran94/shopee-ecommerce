@@ -61,11 +61,12 @@ export const searchProduct = name => {
   };
 };
 
-export const fetchProductsByCates = (categoryIds, order = 'asc') => {
+export const fetchProductsByCates = (categoryIds, order = 'asc', sortBy) => {
   return {
     type: productTypes.FETCH_PRODUCTS_BY_CATEGORIES,
     categoryIds,
-    order
+    order,
+    sortBy
   };
 };
 

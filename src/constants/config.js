@@ -3,13 +3,13 @@ import 'firebase/auth';
 import 'firebase/firestore';
 
 var firebaseConfig = {
-  apiKey: 'AIzaSyD287RQ-NBPb0jl0jHYJDo2TMheUN2nveI',
-  authDomain: 'shopee-ad17d.firebaseapp.com',
-  databaseURL: 'https://shopee-ad17d.firebaseio.com',
-  projectId: 'shopee-ad17d',
-  storageBucket: 'shopee-ad17d.appspot.com',
-  messagingSenderId: '598577888753',
-  appId: '1:598577888753:web:c46e0d8c34eb4d6ec29850'
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_ID
 };
 
 const fire = firebase.initializeApp(firebaseConfig);

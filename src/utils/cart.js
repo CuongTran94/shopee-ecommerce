@@ -1,5 +1,5 @@
+import HtmlToReactParser from 'html-to-react';
 import { orderStatus, orderStatusString } from '../constants/orderStatus';
-import categoryTypes from '../redux/Category/category.types';
 
 export const getPrice = (price, qty) => {
   return price * qty;
@@ -60,7 +60,7 @@ export const getParrentByID = (id, data) => {
 };
 
 export const getFathers = (id, data) => {
-  var results = [];
+  const results = [];
   const findAllFathers = (id, results) => {
     data.map(object => {
       if (object.id === getParrentByID(id, data)) {
@@ -72,9 +72,6 @@ export const getFathers = (id, data) => {
   findAllFathers(id, results);
   return results;
 };
-
-
-
 
 export const getChildren = (id, data) => {
   const results = [];
@@ -98,4 +95,11 @@ export const getCateIds = (cates = []) => {
 
 export const getSubCates = (cateId, data = []) => {
   return data.filter(item => cateId === item.c_parentId);
+};
+
+export const convertHtmlToReact = (htmlInput = '<p></p>') => {
+  const { Parser } = HtmlToReactParser;
+  const htmlToReactParser = new Parser();
+  const reactElement = htmlToReactParser.parse(htmlInput);
+  return reactElement;
 };
